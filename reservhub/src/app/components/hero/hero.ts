@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-hero',
-  imports: [],
   templateUrl: './hero.html',
   styleUrl: './hero.scss'
 })
 export class Hero {
-
+  protected readonly title = signal('ReservHub');
+  protected readonly subtitle = signal('Ihre Reservierungsplattform');
 }

@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-documents',
-  imports: [],
   templateUrl: './documents.html',
   styleUrl: './documents.scss'
 })
 export class Documents {
-
+  protected readonly title = signal('Dokumente');
+  protected readonly subtitle = signal('Wichtige Informationen');
 }

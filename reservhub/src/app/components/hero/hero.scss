@@ -1,0 +1,22 @@
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4rem 1rem;
+  text-align: center;
+
+  &__container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  &__subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+}

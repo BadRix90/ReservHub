@@ -1,1 +1,21 @@
-<p>home works!</p>
+@if (showMainContent()) {
+  <div class="app-wrapper">
+    <main>
+      <app-hero></app-hero>
+      
+      <section id="about">
+        <app-about></app-about>
+      </section>
+      
+      <section id="documents">
+        <app-documents></app-documents>
+      </section>
+      
+      <section id="links">
+        <app-links></app-links>
+      </section>
+      
+      <app-footer></app-footer>
+    </main>
+  </div>
+}

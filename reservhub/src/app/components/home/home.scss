@@ -1,0 +1,25 @@
+.app-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex: 1;
+    
+    section {
+      padding: 3rem 0;
+      
+      &#about {
+        background-color: #f8f9fa;
+      }
+      
+      &#documents {
+        background-color: #ffffff;
+      }
+      
+      &#links {
+        background-color: #f1f3f4;
+      }
+    }
+  }
+}
