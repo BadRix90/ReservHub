@@ -1,8 +1,25 @@
+@mixin respond-down($breakpoint) {
+  @if $breakpoint == 'md' {
+    @media (max-width: 767px) {
+      @content;
+    }
+  }
+  @if $breakpoint == 'sm' {
+    @media (max-width: 575px) {
+      @content;
+    }
+  }
+}
+
 .hero {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   padding: 4rem 1rem;
   text-align: center;
+
+  @include respond-down(md) {
+    padding: 2rem 1rem;
+  }
 
   &__container {
     max-width: 800px;
@@ -13,10 +30,18 @@
     font-size: 3rem;
     margin-bottom: 1rem;
     font-weight: 500;
+
+    @include respond-down(md) {
+      font-size: 2rem;
+    }
   }
 
   &__subtitle {
     font-size: 1.2rem;
     opacity: 0.9;
+
+    @include respond-down(md) {
+      font-size: 1rem;
+    }
   }
 }
