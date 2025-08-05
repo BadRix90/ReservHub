@@ -2,9 +2,10 @@
 @use 'mixins' as *;
 
 .hero {
-  background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: $white;
-  padding: 4rem 1rem;
+  padding: 2rem 1rem;
   text-align: center;
 
   @include respond-down(md) {
