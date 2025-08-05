@@ -1,6 +1,8 @@
 @use '@angular/material' as mat;
-@import 'styles/mixins';
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
 
+// ===== FONT FACES =====
 @font-face {
   font-family: 'Inter';
   src: url('./assets/fonts/Inter/Inter_18pt-Regular.woff2') format('woff2');
@@ -49,74 +51,7 @@
   font-display: swap;
 }
 
-$breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1400px
-);
-
-$primary: #667eea;
-$secondary: #764ba2;
-$light-bg: #f8f9fa;
-$white: #ffffff;
-$light-gray: #f1f3f4;
-
-$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-$font-headings: 'Open Sans', 'Inter', sans-serif;
-
-$font-weights: (
-  normal: 400,
-  medium: 500,
-  semibold: 600,
-  bold: 700
-);
-
-@mixin respond-up($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (min-width: map-get($breakpoints, $breakpoint)) {
-      @content;
-    }
-  }
-}
-
-@mixin respond-down($breakpoint) {
-  @if map-has-key($breakpoints, $breakpoint) {
-    @media (max-width: calc(#{map-get($breakpoints, $breakpoint)} - 1px)) {
-      @content;
-    }
-  }
-}
-
-@mixin respond-between($lower, $upper) {
-  @if map-has-key($breakpoints, $lower) and map-has-key($breakpoints, $upper) {
-    @media (min-width: map-get($breakpoints, $lower)) and (max-width: calc(#{map-get($breakpoints, $upper)} - 1px)) {
-      @content;
-    }
-  }
-}
-
-@mixin flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-@mixin flex-between {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-@mixin container($max-width: 1200px) {
-  width: 100%;
-  max-width: $max-width;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
+// ===== MATERIAL THEME =====
 html {
   @include mat.theme((
     color: (
@@ -128,6 +63,7 @@ html {
   ));
 }
 
+// ===== BASE STYLES =====
 * {
   box-sizing: border-box;
 }
@@ -150,6 +86,7 @@ body {
   font: var(--mat-sys-body-medium);
 }
 
+// ===== TYPOGRAPHY =====
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-headings;
   font-weight: 600;
@@ -211,6 +148,7 @@ h6 {
   font-weight: 500;
 }
 
+// ===== UTILITY CLASSES =====
 .container {
   @include container();
 

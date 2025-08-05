@@ -1,19 +1,9 @@
-@mixin respond-down($breakpoint) {
-  @if $breakpoint == 'md' {
-    @media (max-width: 767px) {
-      @content;
-    }
-  }
-  @if $breakpoint == 'sm' {
-    @media (max-width: 575px) {
-      @content;
-    }
-  }
-}
+@use 'variables' as *;
+@use 'mixins' as *;
 
 .hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
+  background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+  color: $white;
   padding: 4rem 1rem;
   text-align: center;
 
@@ -22,8 +12,7 @@
   }
 
   &__container {
-    max-width: 800px;
-    margin: 0 auto;
+    @include container(800px);
   }
 
   &__title {
