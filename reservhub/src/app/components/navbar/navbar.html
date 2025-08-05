@@ -1,1 +1,75 @@
-<p>navbar works!</p>
+<nav class="navbar" role="navigation" aria-label="Hauptnavigation">
+  <div class="navbar__container">
+    <!-- Logo/Brand -->
+    <div class="navbar__brand">
+      <a routerLink="/" class="brand-link" (click)="closeMenu()">
+        <span class="brand-text">ReservHub</span>
+      </a>
+    </div>
+    
+    <!-- Desktop Navigation -->
+    <div class="navbar__nav desktop-nav">
+      @for (item of navItems(); track item.path) {
+        <a 
+          class="nav-link"
+          [routerLink]="item.path"
+          [fragment]="item.fragment"
+          routerLinkActive="nav-link--active"
+          [routerLinkActiveOptions]="{ exact: false }"
+        >
+          {{ item.label }}
+        </a>
+      }
+    </div>
+    
+    <!-- Mobile Burger Menu -->
+    <button 
+      type="button"
+      class="navbar__burger mobile-only"
+      [class.navbar__burger--active]="isMenuOpen()"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="isMenuOpen()"
+      [attr.aria-label]="isMenuOpen() ? 'Menü schließen' : 'Menü öffnen'"
+    >
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+    
+    <!-- Mobile Navigation Menu -->
+    <div 
+      class="navbar__mobile mobile-nav"
+      [class.navbar__mobile--open]="isMenuOpen()"
+      [attr.aria-hidden]="!isMenuOpen()"
+    >
+      <div class="mobile-nav__backdrop" (click)="closeMenu()"></div>
+      <div class="mobile-nav__menu">
+        <div class="mobile-nav__header">
+          <span class="mobile-brand">ReservHub</span>
+          <button 
+            type="button" 
+            class="mobile-nav__close"
+            (click)="closeMenu()"
+            aria-label="Menü schließen"
+          >
+            ×
+          </button>
+        </div>
+        <div class="mobile-nav__items">
+          @for (item of navItems(); track item.path) {
+            <a 
+              class="mobile-nav__link"
+              [routerLink]="item.path"
+              [fragment]="item.fragment"
+              routerLinkActive="mobile-nav__link--active"
+              [routerLinkActiveOptions]="{ exact: false }"
+              (click)="closeMenu()"
+            >
+              {{ item.label }}
+            </a>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
