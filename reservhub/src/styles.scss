@@ -2,6 +2,10 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
+// ===== GLOBALE LAYOUT-KONSTANTEN =====
+$max-content-width: 1920px !default;
+$container-padding: clamp(1rem, 4vw, 3rem) !default;
+
 // ===== FONT FACES =====
 @font-face {
   font-family: 'Inter';
@@ -61,6 +65,10 @@ html {
     typography: Roboto,
     density: 0,
   ));
+  
+  // SEO: Verbessertes Scrollen
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
 }
 
 // ===== BASE STYLES =====
@@ -84,6 +92,82 @@ body {
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
+  
+  // SEO: Semantic Document Flow
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  
+  // Performance: Rendering-Optimierung
+  text-rendering: optimizeSpeed;
+}
+
+// Haupt-Content Bereich
+main {
+  flex: 1;
+  
+  // SEO: Semantic Landmark
+  &:focus {
+    outline: 2px solid var(--focus-ring, #005fcc);
+    outline-offset: 2px;
+  }
+}
+
+// ===== GLOBALE LAYOUT-KLASSEN =====
+// Haupt-Container mit 1920px Beschränkung
+.app-container {
+  width: 100%;
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding-inline: $container-padding;
+  min-height: 100vh;
+}
+
+// Section-Container für Components
+.section-wrapper {
+  width: 100%;
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding-inline: $container-padding;
+  position: relative;
+  
+  // SEO-optimiert: Semantic Layout
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 3vw, 2rem);
+  
+  // Performance: Contain Layout
+  contain: layout style;
+  
+  // SEO: Semantic Spacing
+  &:not(:last-child) {
+    margin-block-end: clamp(2rem, 5vw, 4rem);
+  }
+}
+
+// Content-Bereiche mit optimaler Lesbarkeit
+.content-area {
+  max-width: min(65ch, 100%);
+  margin-inline: auto;
+  
+  // SEO: Optimale Zeilenlänge für Lesbarkeit
+  line-height: 1.6;
+  text-wrap: balance;
+}
+
+// Hero/Full-Width Sections
+.hero-section {
+  width: 100%;
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding-inline: $container-padding;
+  display: grid;
+  place-items: center;
+  min-height: clamp(400px, 60vh, 800px);
+  
+  // Performance: GPU-Beschleunigung
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 // ===== TYPOGRAPHY =====
@@ -95,42 +179,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
-
-  @include respond-down(md) {
-    font-size: 2.5rem;
-  }
-
-  @include respond-down(sm) {
-    font-size: 2rem;
-  }
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
   font-weight: 600;
-
-  @include respond-down(md) {
-    font-size: 2rem;
-  }
-
-  @include respond-down(sm) {
-    font-size: 1.75rem;
-  }
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: 600;
-
-  @include respond-down(md) {
-    font-size: 1.75rem;
-  }
-
-  @include respond-down(sm) {
-    font-size: 1.5rem;
-  }
 }
 
 h4 {
@@ -148,30 +208,47 @@ h6 {
   font-weight: 500;
 }
 
-// ===== UTILITY CLASSES =====
+// ===== SEO-OPTIMIERTE UTILITY CLASSES =====
+// Responsive Text-Skalierung
+.text-fluid {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.heading-fluid {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  line-height: 1.2;
+}
+
+// Smart Grid-System
+.smart-grid {
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  
+  // Performance: Optimiertes Rendering
+  contain: layout;
+}
+
+// ===== BESTEHENDE UTILITY CLASSES (AKTUALISIERT) =====
 .container {
-  @include container();
+  width: 100%;
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding-inline: $container-padding;
 
   @include respond-down(sm) {
-    padding: 0 0.75rem;
+    padding-inline: 0.75rem;
   }
 }
 
 .section-padding {
-  padding: 3rem 0;
-
-  @include respond-down(md) {
-    padding: 2rem 0;
-  }
-
-  @include respond-down(sm) {
-    padding: 1.5rem 0;
-  }
+  padding: clamp(1.5rem, 5vw, 3rem) 0;
 }
 
 .grid {
   display: grid;
-  gap: 1rem;
+  gap: clamp(1rem, 3vw, 2rem);
 
   &--2-cols {
     grid-template-columns: repeat(2, 1fr);
@@ -225,3 +302,54 @@ h6 {
 
 .font-inter { font-family: $font-primary; }
 .font-heading { font-family: $font-headings; }
+
+// ===== ACCESSIBILITY & SEO =====
+// Skip-Links für Screen Reader
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-color, #000);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  
+  &:focus {
+    top: 6px;
+  }
+}
+
+// Focus Management
+:focus-visible {
+  outline: 2px solid var(--focus-ring, #005fcc);
+  outline-offset: 2px;
+}
+
+// ===== RESPONSIVE IMAGES =====
+img {
+  max-width: 100%;
+  height: auto;
+  
+  // SEO: Loading-Optimierung
+  &[loading="lazy"] {
+    content-visibility: auto;
+  }
+}
+
+// ===== PRINT STYLES =====
+@media print {
+  .app-container,
+  .section-wrapper,
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+  
+  // SEO: Print-optimierte Typography
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+}

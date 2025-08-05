@@ -1,6 +1,81 @@
-<div class="about">
-  <div class="about__container">
-    <h2 class="about__title">{{ title() }}</h2>
-    <p class="about__description">{{ description() }}</p>
+<section class="about section-wrapper" id="about" aria-label="Über uns">
+  <!-- Hero Section -->
+  <div class="about__hero">
+    <div class="about__hero-content content-area">
+      <h1 class="about__title heading-fluid">{{ title() }}</h1>
+      <p class="about__subtitle text-fluid">{{ subtitle() }}</p>
+    </div>
   </div>
-</div>
+  
+  <!-- Stats Section -->
+  <div class="about__stats">
+    <div class="stats-grid smart-grid">
+      @for (stat of stats(); track stat.value) {
+        <div class="stat-card">
+          <div class="stat-card__value">{{ stat.value }}</div>
+          <div class="stat-card__label">{{ stat.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+  
+  <!-- Information Sections -->
+  <div class="about__info">
+    <h2 class="info__title">Informationsbereiche</h2>
+    
+    @for (section of infoSections(); track $index; let i = $index) {
+      <div class="info-item" [class.info-item--reverse]="i % 2 === 1">
+        <div class="info-item__image">
+          <!-- Platzhalter für Bild -->
+          <div class="image-placeholder"></div>
+        </div>
+        <div class="info-item__content">
+          <h2>{{ section.title }}</h2>
+          <p>{{ section.description }}</p>
+        </div>
+      </div>
+    }
+  </div>
+  
+  <!-- Process Section -->
+  <div class="about__process">
+    <h2>Was erwartet Sie beim Reservedienst?</h2>
+    <div class="process-grid">
+      @for (step of processSteps(); track step.title) {
+        <div class="process-step">
+          <h3 class="process-step__title">{{ step.title }}</h3>
+          <ul class="process-step__list">
+            @for (item of step.items; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+    <div class="process-info">
+      <h3>Wichtige Hinweise:</h3>
+      <ul>
+        <li><strong>Einkleidung:</strong> Erfolgt 2-4 Tage nach Dienstantritt (ca. 65kg Ausrüstung)</li>
+        <li><strong>BA 90/5:</strong> Ärztliche Untersuchung mit Seh-/Hörtest, Urinprobe und Gesundheitscheck</li>
+        <li><strong>USG-Antrag:</strong> Direkt am ersten Tag bei S1/A1 melden - "Ohne Daten kein Geld!"</li>
+        <li><strong>Beförderungen:</strong> Nur mit aktiver Beorderung in einem Truppenteil möglich</li>
+      </ul>
+    </div>
+  </div>
+  
+  <!-- CTA Section -->
+  <div class="about__cta">
+    <div class="content-area">
+      <h2>Informieren Sie sich umfassend</h2>
+      <p>ReservHub stellt Ihnen alle wichtigen Informationen rund um den Reservedienst übersichtlich zur Verfügung.</p>
+      <div class="cta-buttons">
+        <button class="btn btn--primary" type="button">
+          Informationen durchsuchen
+        </button>
+        <button class="btn btn--secondary" type="button">
+          FAQ aufrufen
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
