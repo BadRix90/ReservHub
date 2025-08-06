@@ -6,52 +6,52 @@
       <p class="about__subtitle text-fluid">{{ subtitle() }}</p>
     </div>
   </div>
-  
+
   <!-- Stats Section -->
   <div class="about__stats">
     <div class="stats-grid smart-grid">
       @for (stat of stats(); track stat.value) {
-        <mat-card class="stat-card">
-          <mat-card-content>
-            <div class="stat-card__value">{{ stat.value }}</div>
-            <div class="stat-card__label">{{ stat.label }}</div>
-          </mat-card-content>
-        </mat-card>
+      <mat-card class="stat-card">
+        <mat-card-content>
+          <div class="stat-card__value">{{ stat.value }}</div>
+          <div class="stat-card__label">{{ stat.label }}</div>
+        </mat-card-content>
+      </mat-card>
       }
     </div>
   </div>
-  
+
   <!-- Information Sections -->
   <div class="about__info">
     <h2 class="info__title">Informationsbereiche</h2>
-    
+
     @for (section of infoSections(); track $index; let i = $index) {
-      <mat-card class="info-item" [class.info-item--reverse]="i % 2 === 1">
-        <div class="info-item__image">
-          <!-- Platzhalter für Bild -->
-          <div class="image-placeholder"></div>
-        </div>
-        <div class="info-item__content">
-          <h2>{{ section.title }}</h2>
-          <p>{{ section.description }}</p>
-        </div>
-      </mat-card>
+    <mat-card class="info-item" [class.info-item--reverse]="i % 2 === 1">
+      <div class="info-item__image">
+        <!-- Platzhalter für Bild -->
+        <div class="image-placeholder"></div>
+      </div>
+      <div class="info-item__content">
+        <h2>{{ section.title }}</h2>
+        <p>{{ section.description }}</p>
+      </div>
+    </mat-card>
     }
   </div>
-  
+
   <!-- Process Section -->
   <div class="about__process">
     <h2>Was erwartet Sie beim Reservedienst?</h2>
     <div class="process-grid">
       @for (step of processSteps(); track step.title) {
-        <mat-card class="process-step">
-          <h3 class="process-step__title">{{ step.title }}</h3>
-          <ul class="process-step__list">
-            @for (item of step.items; track item) {
-              <li>{{ item }}</li>
-            }
-          </ul>
-        </mat-card>
+      <mat-card class="process-step">
+        <h3 class="process-step__title">{{ step.title }}</h3>
+        <ul class="process-step__list">
+          @for (item of step.items; track item) {
+          <li>{{ item }}</li>
+          }
+        </ul>
+      </mat-card>
       }
     </div>
     <mat-card class="process-info">
@@ -63,21 +63,5 @@
         <li><strong>Beförderungen:</strong> Nur mit aktiver Beorderung in einem Truppenteil möglich</li>
       </ul>
     </mat-card>
-  </div>
-  
-  <!-- CTA Section -->
-  <div class="about__cta">
-    <div class="content-area">
-      <h2>Informieren Sie sich umfassend</h2>
-      <p>ReservHub stellt Ihnen alle wichtigen Informationen rund um den Reservedienst übersichtlich zur Verfügung.</p>
-      <div class="cta-buttons">
-        <button mat-raised-button class="btn btn--primary" type="button">
-          Informationen durchsuchen
-        </button>
-        <button mat-raised-button class="btn btn--secondary" type="button">
-          FAQ aufrufen
-        </button>
-      </div>
-    </div>
   </div>
 </section>

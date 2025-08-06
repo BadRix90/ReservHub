@@ -1,85 +1,68 @@
 <section class="contact">
   <div class="contact__container">
-    
+
     <div class="contact__content">
       <div class="contact__info">
         <h3 class="contact__label">Kontakt</h3>
-        <h2 class="contact__title">Lassen Sie uns sprechen</h2>
-        
         <div class="contact__description">
-          <p>Haben Sie Fragen zu ReservHub oder möchten Sie mehr über unsere 
-             uns und dem Reservedienst erfahren?</p>
-          <p>Schreiben Sie uns eine Nachricht und wir melden uns 
-             schnellstmöglich bei Ihnen zurück.</p>
+          <p>Hast du Fragen zu Gefechtsstand-Reserve oder möchtest mehr über unsere
+            und dem Reservedienst erfahren?</p>
+          <p>Dann schreibe uns eine Nachricht und wir melden uns
+            schnellstmöglich bei Dir zurück.</p>
         </div>
       </div>
 
       <div class="contact__form-wrapper">
         <form class="contact__form" [formGroup]="contactForm" (ngSubmit)="submitForm()">
-          
+
           <div class="form-group">
             <label for="name" class="form-group__label">Name</label>
-            <input 
-              type="text" 
-              id="name" 
-              formControlName="name"
-              class="form-group__input"
+            <input type="text" id="name" formControlName="name" class="form-group__input"
               [class.form-group__input--error]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
-              placeholder="Ihr vollständiger Name"
-              (blur)="validateField('name')">
-            
+              placeholder="Ihr vollständiger Name" (blur)="validateField('name')">
+
             @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
-              <div class="form-group__error">{{ getFieldError('name') }}</div>
+            <div class="form-group__error">{{ getFieldError('name') }}</div>
             }
           </div>
 
           <div class="form-group">
             <label for="email" class="form-group__label">E-Mail</label>
-            <input 
-              type="email" 
-              id="email" 
-              formControlName="email"
-              class="form-group__input"
+            <input type="email" id="email" formControlName="email" class="form-group__input"
               [class.form-group__input--error]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
-              placeholder="ihre.email@unternehmen.de"
-              (blur)="validateField('email')">
-            
+              placeholder="ihre.email@unternehmen.de" (blur)="validateField('email')">
+
             @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
-              <div class="form-group__error">{{ getFieldError('email') }}</div>
+            <div class="form-group__error">{{ getFieldError('email') }}</div>
             }
           </div>
 
           <div class="form-group">
             <label for="message" class="form-group__label">Nachricht</label>
-            <textarea 
-              id="message" 
-              formControlName="message"
-              class="form-group__textarea"
+            <textarea id="message" formControlName="message" class="form-group__textarea"
               [class.form-group__textarea--error]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
               placeholder="Beschreiben Sie Ihr Anliegen oder Ihre Fragen zu ReservHub..."
               (blur)="validateField('message')"></textarea>
-            
+
             @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
-              <div class="form-group__error">{{ getFieldError('message') }}</div>
+            <div class="form-group__error">{{ getFieldError('message') }}</div>
             }
           </div>
 
           <div class="form-checkbox">
             <input type="checkbox" id="privacy" formControlName="privacy" class="form-checkbox__input">
             <label for="privacy" class="form-checkbox__label">
-              Ich habe die Datenschutzerklärung gelesen und stimme der Verarbeitung 
+              Ich habe die Datenschutzerklärung gelesen und stimme der Verarbeitung
               meiner Daten zu.
             </label>
           </div>
 
           <div class="form-actions">
-            <button 
-              type="submit" 
-              class="form-actions__submit"
-              [class.form-actions__submit--loading]="isSubmitting()"
-              [disabled]="!isFormValid() || isSubmitting()">
+            <button type="submit" class="form-actions__submit" [class.form-actions__submit--loading]="isSubmitting()"
+              [disabled]="!contactForm.valid || isSubmitting()">
               @if (isSubmitting()) { Wird gesendet... } @else { Nachricht senden }
             </button>
+
           </div>
 
         </form>
@@ -88,18 +71,18 @@
   </div>
 
   @if (toastData().show) {
-    <div class="toast" [class]="'toast--' + toastData().type" (click)="hideToast()">
-      <div class="toast__icon">
-        @switch (toastData().type) {
-          @case ('success') { ✓ }
-          @case ('error') { ✕ }
-          @case ('warning') { ⚠ }
-        }
-      </div>
-      
-      <div class="toast__message">{{ toastData().message }}</div>
-      
-      <button class="toast__close" (click)="hideToast()">×</button>
+  <div class="toast" [class]="'toast--' + toastData().type" (click)="hideToast()">
+    <div class="toast__icon">
+      @switch (toastData().type) {
+      @case ('success') { ✓ }
+      @case ('error') { ✕ }
+      @case ('warning') { ⚠ }
+      }
     </div>
+
+    <div class="toast__message">{{ toastData().message }}</div>
+
+    <button class="toast__close" (click)="hideToast()">×</button>
+  </div>
   }
 </section>

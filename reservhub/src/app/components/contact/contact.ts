@@ -1,9 +1,10 @@
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, inject, signal, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
+  standalone: true,
   selector: 'app-contact',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './contact.html',
@@ -21,7 +22,13 @@ export class Contact {
   }>({ show: false, message: '', type: 'success' });
 
   protected readonly contactForm = this.createContactForm();
-  protected readonly isFormValid = computed(() => this.contactForm.valid);
+
+  constructor() {
+    effect(() => {
+      console.log('✅ Form valid:', this.contactForm.valid);
+      console.log('📦 Form value:', this.contactForm.value);
+    });
+  }
 
   private createContactForm() {
     return this.fb.group({
@@ -58,7 +65,7 @@ export class Contact {
 
   private sendFormData(): void {
     this.isSubmitting.set(true);
-    
+
     const formData = {
       name: this.contactForm.value.name,
       email: this.contactForm.value.email,
