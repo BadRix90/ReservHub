@@ -25,8 +25,6 @@ export class Contact {
 
   constructor() {
     effect(() => {
-      console.log('✅ Form valid:', this.contactForm.valid);
-      console.log('📦 Form value:', this.contactForm.value);
     });
   }
 

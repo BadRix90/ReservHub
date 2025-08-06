@@ -2,6 +2,7 @@
 @use 'mixins' as *;
 
 .about {
+  background: linear-gradient(135deg, $blue-steel 0%, #c3cfe2 100%);
   &__hero {
     text-align: center;
     padding-block: clamp(2rem, 8vw, 6rem);

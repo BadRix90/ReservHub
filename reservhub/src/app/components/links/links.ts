@@ -17,7 +17,7 @@ interface ExternalLink {
 })
 export class Links {
   protected readonly title = signal('Wichtige Links');
-  
+
   protected readonly externalLinks = signal<ExternalLink[]>([
     {
       title: 'Unterhaltssicherung',
@@ -38,6 +38,31 @@ export class Links {
       title: 'Reserve der Bundeswehr',
       url: 'https://www.bundeswehr.de/de/menschen-karrieren/die-reserve-der-bundeswehr',
       description: 'Karriere und Informationen zur Reserve'
+    },
+    {
+      title: 'Ansprechpartner für Reservisten',
+      url: 'https://www.reservistenverband.de/fuer-reservisten/anlaufstellen-und-ansprechpartner/',
+      description: 'Zentrale Ansprechpartner wie Landeskommandos und S1-ResAngel'
+    },
+    {
+      title: 'Karriereportal der Bundeswehr – Reservisten',
+      url: 'https://www.bundeswehrkarriere.de/karriere/reservistinnen-und-reservisten/418',
+      description: 'Karrierechancen, Vergütung und Weiterbildung für Reservisten'
+    },
+    {
+      title: 'Rechtliche Grundlagen für Reservisten',
+      url: 'https://www.bundeswehr.de/de/organisation/streitkraeftebasis/aktuelles/grundlagendokumente-fuer-die-reserve-5409132',
+      description: 'Wehrpflichtgesetz, Reservistengesetz, Arbeitsplatzschutz u. v. m.'
+    },
+    {
+      title: 'Territoriale Reserve & Heimatschutz',
+      url: 'https://www.bundeswehr.de/de/organisation/streitkraeftebasis/auftrag/territoriale-reserve',
+      description: 'Aufgaben der Heimatschutzkräfte und Rolle der Reserve im Inland'
     }
   ]);
+
+openLink(url: string): void {
+  window.open(url, '_blank', 'noopener');
+}
+
 }

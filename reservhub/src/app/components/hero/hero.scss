@@ -13,6 +13,7 @@
   }
 
   &__container {
+    background: linear-gradient(135deg, $blue-steel 0%, #c3cfe2 100%);
     @include container(800px);
   }
 
