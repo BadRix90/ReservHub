@@ -1,0 +1,141 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.footer {
+  background: $light-gray;
+  border-top: 1px solid $gray-stone;
+  margin-top: clamp(3rem, 6vw, 5rem);
+
+  &__container {
+    max-width: $max-content-width;
+    margin: 0 auto;
+    padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 4vw, 3rem);
+  }
+
+  &__main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+
+    @include respond-down(md) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  &__brand {
+    .footer__logo {
+      font-size: clamp(1.25rem, 3vw, 1.5rem);
+      font-weight: 700;
+      color: $black;
+      margin-bottom: 1rem;
+      font-family: $font-headings;
+    }
+
+    .footer__description {
+      color: $gray-stone;
+      line-height: 1.6;
+      font-size: clamp(0.875rem, 2vw, 1rem);
+      max-width: 65ch;
+    }
+  }
+
+  &__nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+
+    @include respond-down(sm) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  &__section {
+    .footer__section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: $black;
+      margin-bottom: 1rem;
+      font-family: $font-headings;
+    }
+  }
+
+  &__link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    .footer__link-item {
+      margin-bottom: 0.75rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .footer__link {
+      color: $gray-stone;
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s ease;
+
+      &:hover,
+      &:focus {
+        color: $primary;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid $gray-light;
+    padding-top: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+
+    @include respond-down(md) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+
+  &__copyright {
+    .footer__copyright-text {
+      color: $gray-stone;
+      font-size: 0.875rem;
+      margin: 0;
+    }
+  }
+
+  &__disclaimer {
+    @include respond-down(md) {
+      order: -1;
+    }
+
+    .footer__disclaimer-text {
+      color: $gray-stone;
+      font-size: 0.75rem;
+      margin: 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.5;
+
+      @include respond-down(md) {
+        justify-content: center;
+      }
+    }
+
+    .footer__disclaimer-icon {
+      font-size: 1rem;
+      color: $gray-stone;
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+    }
+  }
+}
