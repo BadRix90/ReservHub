@@ -22,7 +22,7 @@
     
     .subtitle {
       font-size: clamp(1rem, 2.5vw, 1.125rem);
-      color: var(--mat-sys-on-surface-variant);
+      color: $black;
       margin: 0;
       font-weight: 400;
     }
@@ -67,7 +67,7 @@
         p {
           margin: 0 0 1rem 0;
           line-height: 1.6;
-          color: var(--mat-sys-on-surface);
+          color: $black;
           
           &:last-child {
             margin-bottom: 0;
@@ -75,7 +75,7 @@
           
           &.info-note {
             font-size: 0.9rem;
-            color: var(--mat-sys-on-surface-variant);
+            color: $black;
             
             strong {
               color: $primary;
@@ -96,7 +96,7 @@
       @include smooth-transition();
       
       &:hover {
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 25px rgba($black, 0.15);
       }
       
       mat-card-header {
@@ -105,7 +105,7 @@
         mat-card-title {
           font-size: 1.25rem;
           font-weight: 600;
-          color: var(--mat-sys-on-surface);
+          color: $black;
         }
       }
       
@@ -144,7 +144,7 @@
           display: block;
           font-weight: 600;
           margin-bottom: 1rem;
-          color: var(--mat-sys-on-surface);
+          color: $black;
           font-size: 1rem;
         }
         
@@ -178,7 +178,7 @@
             
             &.mat-button-toggle-checked {
               background-color: $primary;
-              color: $white;
+              color: $black;
             }
           }
         }
@@ -227,14 +227,14 @@
       
       &:hover {
         border-color: rgba($primary, 0.2);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 8px 25px rgba($black, 0.15);
       }
       
       mat-card-header {
         mat-card-title {
           font-size: 1.25rem;
           font-weight: 600;
-          color: var(--mat-sys-on-surface);
+          color: $black;
         }
       }
       
@@ -270,7 +270,7 @@
         
         &.total {
           background: linear-gradient(135deg, $primary 0%, $secondary 100%);
-          color: $white;
+          color: $black;
           font-weight: 600;
           padding: 1.5rem;
           
@@ -366,10 +366,10 @@
     }
     
     .result-grid .result-item {
-      background: rgba(255, 255, 255, 0.05);
-      
+      background: rgba($white, 0.05);
+
       &:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba($white, 0.1);
       }
     }
   }
