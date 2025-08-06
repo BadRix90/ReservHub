@@ -1,28 +1,24 @@
 <mat-toolbar class="navbar">
-  <span class="navbar__brand" routerLink="/" (click)="closeMenu()">
+  <span class="navbar__brand" (click)="scrollToSection('home')">
     Gefechtsstand-Reserve
   </span>
   <span class="navbar__spacer"></span>
 
-  <!-- Desktop Navigation -->
   <nav class="navbar__desktop">
-    @for (item of navItems(); track item.path) {
-      <a mat-button [routerLink]="item.path" [fragment]="item.fragment" routerLinkActive="active">
+    @for (item of navItems(); track item.fragment) {
+      <a mat-button (click)="scrollToSection(item.fragment)">
         {{ item.label }}
       </a>
     }
   </nav>
 
-  <!-- Mobile Menu Toggle -->
   <button mat-icon-button class="navbar__toggle" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen()">
     <mat-icon>{{ isMenuOpen() ? 'close' : 'menu' }}</mat-icon>
   </button>
 
-  <!-- Mobile Navigation -->
   <nav class="navbar__mobile" [class.navbar__mobile--open]="isMenuOpen()">
-    @for (item of navItems(); track item.path) {
-      <a mat-button [routerLink]="item.path" [fragment]="item.fragment" 
-         routerLinkActive="active" (click)="closeMenu()">
+    @for (item of navItems(); track item.fragment) {
+      <a mat-button (click)="scrollToSection(item.fragment)">
         {{ item.label }}
       </a>
     }
