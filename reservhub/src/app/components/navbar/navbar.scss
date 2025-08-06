@@ -8,10 +8,20 @@
   z-index: 1000;
 
   &__brand {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.5rem);
     font-weight: 700;
     cursor: pointer;
     @include smooth-transition();
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.2;
+    
+    @media (max-width: 320px) {
+      font-size: 0.9rem;
+      line-height: 1.1;
+      max-width: 180px;
+    }
     
     &:hover {
       color: $primary;
