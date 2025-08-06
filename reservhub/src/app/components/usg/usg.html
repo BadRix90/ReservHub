@@ -1,1 +1,143 @@
-<p>usg works!</p>
+<div class="usg-container">
+  <!-- Title -->
+  <header class="usg-title">
+    <h1>USG Rechner</h1>
+    <p class="subtitle">Unterhaltssicherungsgesetz - Berechnung</p>
+  </header>
+
+  <!-- Info Text -->
+  <section class="usg-info">
+    <mat-card class="info-card">
+      <mat-card-content>
+        <mat-icon class="info-icon">info</mat-icon>
+        <div class="info-text">
+          <p>
+            Als Arbeitnehmer oder Arbeitnehmerin in der freien Wirtschaft kann wahlweise die Mindestleistung nach §8 USG oder den Ersatz des Verdienstausfalles beantragt werden.
+          </p>
+          <p class="info-note">
+            <strong>Hinweis:</strong> Dieser Rechner basiert auf der Erhöhung durch die Mindestleistungsanpassungsverordnung vom 19. April 2024.
+          </p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <!-- Rechner Form -->
+  <section class="usg-calculator">
+    <mat-card class="calculator-card">
+      <mat-card-header>
+        <mat-card-title>Berechnungsparameter</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <form [formGroup]="usgForm" class="calculator-form">
+          <!-- Dienstgrad -->
+          <mat-form-field appearance="outline">
+            <mat-label>Dienstgrad</mat-label>
+            <mat-select formControlName="dienstgrad">
+              @for (grad of dienstgrade; track grad.value) {
+                <mat-option [value]="grad.value">{{ grad.name }}</mat-option>
+              }
+            </mat-select>
+            <mat-icon matSuffix>military_tech</mat-icon>
+          </mat-form-field>
+
+          <!-- Anzahl Kinder -->
+          <mat-form-field appearance="outline">
+            <mat-label>Anzahl Kinder</mat-label>
+            <mat-select formControlName="anzahlKinder">
+              <mat-option [value]="0">0</mat-option>
+              <mat-option [value]="1">1</mat-option>
+              <mat-option [value]="2">2</mat-option>
+              <mat-option [value]="3">3</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>child_care</mat-icon>
+            <mat-hint>Anzahl unterhaltsberechtigter Kinder</mat-hint>
+          </mat-form-field>
+
+          <!-- Berechnungsart -->
+          <div class="calculation-type">
+            <label class="field-label">Berechnungsart</label>
+            <mat-button-toggle-group formControlName="berechnungsArt">
+              <mat-button-toggle value="tage">
+                <mat-icon>today</mat-icon>
+                Tage
+              </mat-button-toggle>
+              <mat-button-toggle value="datum">
+                <mat-icon>date_range</mat-icon>
+                Zeitraum
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          </div>
+
+          <!-- Tage Input -->
+          @if (usgForm.get('berechnungsArt')?.value === 'tage') {
+            <mat-form-field appearance="outline">
+              <mat-label>RD-Tage</mat-label>
+              <input matInput type="number" formControlName="rdlTage" min="0.5" step="0.5">
+              <mat-icon matSuffix>schedule</mat-icon>
+              <mat-hint>Wochentage einschließlich Wochenenden</mat-hint>
+            </mat-form-field>
+          }
+
+          <!-- Datum Range -->
+          @if (usgForm.get('berechnungsArt')?.value === 'datum') {
+            <div class="date-fields">
+              <mat-form-field appearance="outline">
+                <mat-label>Beginn</mat-label>
+                <input matInput [matDatepicker]="startPicker" formControlName="startDatum">
+                <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+                <mat-datepicker #startPicker></mat-datepicker>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                <mat-label>Ende</mat-label>
+                <input matInput [matDatepicker]="endPicker" formControlName="endDatum">
+                <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+                <mat-datepicker #endPicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          }
+
+          <!-- Reset Button -->
+          <div class="form-actions">
+            <button mat-stroked-button type="button" (click)="onReset()">
+              <mat-icon>refresh</mat-icon>
+              Zurücksetzen
+            </button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <!-- Ergebnis -->
+  <section class="usg-result">
+    <mat-card class="result-card">
+      <mat-card-header>
+        <mat-card-title>Berechnungsergebnis</mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <div class="result-grid">
+          <div class="result-item">
+            <span class="result-label">Mindestleistung (§8 USG)</span>
+            <span class="result-value">{{ formatCurrency(berechnungsErgebnis().mindestleistung) }}</span>
+          </div>
+          
+          <div class="result-item">
+            <span class="result-label">Dienstleistungsprämie (§ 10 Abs. 1)</span>
+            <span class="result-value">{{ formatCurrency(berechnungsErgebnis().dienstleistungspraemie) }}</span>
+          </div>
+          
+          <mat-divider></mat-divider>
+          
+          <div class="result-item total">
+            <span class="result-label">Summe (steuerfrei)</span>
+            <span class="result-value">{{ formatCurrency(berechnungsErgebnis().gesamt) }}</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</div>
