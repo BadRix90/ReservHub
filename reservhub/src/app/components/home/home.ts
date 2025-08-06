@@ -6,11 +6,11 @@ import { Documents } from '../documents/documents';
 import { Links } from '../links/links';
 import { Footer } from '../footer/footer';
 import { Contact } from "../contact/contact";
-import { Navbar } from "../navbar/navbar";
+import { Usg } from "../usg/usg";
 
 @Component({
   selector: 'app-home',
-  imports: [Hero, About, Documents, Links, Footer, Contact, Navbar],
+  imports: [Hero, About, Documents, Links, Footer, Contact, Usg],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
