@@ -6,12 +6,12 @@
   max-width: 600px;
   margin: 0 auto;
   padding: clamp(2rem, 5vw, 4rem) 1rem;
-  
+
   // ===== TITLE SECTION =====
   .usg-title {
     text-align: center;
     margin-bottom: clamp(2rem, 4vw, 3rem);
-    
+
     h1 {
       font-size: clamp(2rem, 5vw, 2.5rem);
       font-weight: 700;
@@ -19,7 +19,7 @@
       margin: 0 0 0.5rem 0;
       letter-spacing: -0.02em;
     }
-    
+
     .subtitle {
       font-size: clamp(1rem, 2.5vw, 1.125rem);
       color: $black;
@@ -31,52 +31,61 @@
   // ===== INFO SECTION =====
   .usg-info {
     margin-bottom: clamp(2rem, 4vw, 3rem);
-    
+
     .info-card {
       border-radius: 16px;
       border-left: 4px solid $primary;
       background: linear-gradient(135deg, rgba($primary, 0.05) 0%, rgba($secondary, 0.02) 100%);
-      
+
       mat-card-content {
         padding: clamp(1.5rem, 3vw, 2rem);
         display: flex;
         gap: 1rem;
         align-items: flex-start;
-        
+
         @include respond-down(sm) {
           flex-direction: column;
           text-align: center;
           align-items: center;
         }
       }
-      
+
       .info-icon {
         color: $primary;
         font-size: 2rem;
         flex-shrink: 0;
         margin-top: 0.25rem;
-        
+
         @include respond-down(sm) {
           margin-top: 0;
         }
       }
-      
+
       .info-text {
         flex: 1;
-        
+        padding: 0 0.5rem; // Zusätzlicher Seitenabstand
+
+        @include respond-down(sm) {
+          padding: 0; // Auf Mobile kein extra Padding
+        }
+
         p {
           margin: 0 0 1rem 0;
           line-height: 1.6;
           color: $black;
-          
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+          hyphens: auto;
+          word-break: break-word;
+
           &:last-child {
             margin-bottom: 0;
           }
-          
+
           &.info-note {
             font-size: 0.9rem;
             color: $black;
-            
+
             strong {
               color: $primary;
               font-weight: 600;
@@ -90,54 +99,54 @@
   // ===== CALCULATOR SECTION =====
   .usg-calculator {
     margin-bottom: clamp(2rem, 4vw, 3rem);
-    
+
     .calculator-card {
       border-radius: 20px;
       @include smooth-transition();
-      
+
       &:hover {
         box-shadow: 0 8px 25px rgba($black, 0.15);
       }
-      
+
       mat-card-header {
         padding-bottom: 0;
-        
+
         mat-card-title {
           font-size: 1.25rem;
           font-weight: 600;
           color: $black;
         }
       }
-      
+
       mat-card-content {
         padding-top: 1.5rem;
       }
     }
-    
+
     .calculator-form {
       display: flex;
       flex-direction: column;
       gap: clamp(1.5rem, 3vw, 2rem);
-      
+
       // Form Fields
       mat-form-field {
         width: 100%;
-        
+
         .mat-mdc-text-field-wrapper {
           border-radius: 12px;
         }
-        
+
         .mat-mdc-form-field-icon-suffix {
           color: $primary;
         }
-        
+
         &.mat-focused {
           .mat-mdc-form-field-icon-suffix {
             color: $primary;
           }
         }
       }
-      
+
       // Calculation Type
       .calculation-type {
         .field-label {
@@ -147,35 +156,35 @@
           color: $black;
           font-size: 1rem;
         }
-        
+
         mat-button-toggle-group {
           width: 100%;
           border-radius: 12px;
           overflow: hidden;
-          
+
           mat-button-toggle {
             flex: 1;
             border: none;
-            
+
             &:first-child {
               border-radius: 12px 0 0 12px;
             }
-            
+
             &:last-child {
               border-radius: 0 12px 12px 0;
             }
-            
+
             .mat-button-toggle-label-content {
               @include flex-center();
               gap: 0.5rem;
               padding: 1rem;
               font-weight: 500;
-              
+
               mat-icon {
                 font-size: 1.25rem;
               }
             }
-            
+
             &.mat-button-toggle-checked {
               background-color: $primary;
               color: $black;
@@ -183,32 +192,32 @@
           }
         }
       }
-      
+
       // Date Fields
       .date-fields {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 1rem;
-        
+
         @include respond-down(sm) {
           grid-template-columns: 1fr;
         }
       }
-      
+
       // Form Actions
       .form-actions {
         display: flex;
         justify-content: center;
         margin-top: 1rem;
-        
+
         button {
           border-radius: 12px;
           padding: 0.75rem 2rem;
           font-weight: 500;
-          
+
           @include flex-center();
           gap: 0.5rem;
-          
+
           mat-icon {
             font-size: 1.125rem;
           }
@@ -224,12 +233,12 @@
       border: 2px solid transparent;
       background: linear-gradient(135deg, rgba($primary, 0.02) 0%, rgba($secondary, 0.05) 100%);
       @include smooth-transition();
-      
+
       &:hover {
         border-color: rgba($primary, 0.2);
         box-shadow: 0 8px 25px rgba($black, 0.15);
       }
-      
+
       mat-card-header {
         mat-card-title {
           font-size: 1.25rem;
@@ -237,17 +246,17 @@
           color: $black;
         }
       }
-      
+
       mat-card-content {
         padding-top: 1.5rem;
       }
     }
-    
+
     .result-grid {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
-      
+
       .result-item {
         display: flex;
         justify-content: space-between;
@@ -256,54 +265,54 @@
         border-radius: 12px;
         background: rgba($white, 0.8);
         @include smooth-transition();
-        
+
         @include respond-down(sm) {
           flex-direction: column;
           text-align: center;
           gap: 0.5rem;
         }
-        
+
         &:hover {
           background: rgba($white, 1);
           transform: translateY(-2px);
         }
-        
+
         &.total {
           background: linear-gradient(135deg, $primary 0%, $secondary 100%);
           color: $black;
           font-weight: 600;
           padding: 1.5rem;
-          
+
           &:hover {
             transform: translateY(-2px) scale(1.02);
           }
-          
+
           .result-value {
             font-size: 1.5rem;
             font-weight: 700;
           }
         }
-        
+
         .result-label {
           font-weight: 500;
           font-size: 1rem;
-          
+
           @include respond-down(sm) {
             font-size: 0.9rem;
           }
         }
-        
+
         .result-value {
           font-family: 'Inter', monospace;
           font-size: 1.25rem;
           font-weight: 600;
-          
+
           @include respond-down(sm) {
             font-size: 1.125rem;
           }
         }
       }
-      
+
       mat-divider {
         margin: 0.5rem 0;
         background-color: rgba($primary, 0.2);
@@ -317,20 +326,20 @@
     padding: 1.5rem 1rem;
     max-width: none;
     margin: 0;
-    
+
     .calculator-form {
       gap: 1.5rem;
-      
+
       .calculation-type mat-button-toggle-group mat-button-toggle {
         .mat-button-toggle-label-content {
           flex-direction: column;
           gap: 0.25rem;
           padding: 0.75rem 0.5rem;
-          
+
           mat-icon {
             font-size: 1rem;
           }
-          
+
           span {
             font-size: 0.875rem;
           }
@@ -352,11 +361,19 @@
       animation: highlight 0.5s ease-in-out;
     }
   }
-  
+
   @keyframes highlight {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.05);
+    }
+
+    100% {
+      transform: scale(1);
+    }
   }
 
   // ===== DARK MODE SUPPORT =====
@@ -364,7 +381,7 @@
     .info-card {
       background: linear-gradient(135deg, rgba($primary, 0.1) 0%, rgba($secondary, 0.05) 100%);
     }
-    
+
     .result-grid .result-item {
       background: rgba($white, 0.05);
 
