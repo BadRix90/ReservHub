@@ -1,6 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 interface FooterLink {
   label: string;
@@ -9,20 +12,13 @@ interface FooterLink {
 
 @Component({
   selector: 'app-footer',
-  imports: [RouterLink, MatIconModule],
+  imports: [RouterLink, MatIconModule, MatCardModule, MatButtonModule, MatDividerModule],
   templateUrl: './footer.html',
   styleUrl: './footer.scss'
 })
 export class Footer {
   protected readonly currentYear = signal(new Date().getFullYear());
   protected readonly brandName = signal('Gefechtsstand-Reserve');
-
-  protected readonly quickLinks = signal<FooterLink[]>([
-    { label: 'Info', path: '/about' },
-    { label: 'Dokumente', path: '/documents' },
-    { label: 'Links', path: '/links' },
-    { label: 'Kontakt', path: '/contact' }
-  ]);
 
   protected readonly legalLinks = signal<FooterLink[]>([
     { label: 'Datenschutzerklärung', path: '/privacy-policy' },

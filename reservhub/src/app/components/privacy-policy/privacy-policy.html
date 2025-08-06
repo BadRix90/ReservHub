@@ -2,90 +2,166 @@
   <div class="privacy-policy__container">
     
     <div class="privacy-policy__header">
-      <a routerLink="/" class="privacy-policy__back-link">← Zurück zur Startseite</a>
-      <h1 class="privacy-policy__title">{{ pageTitle() }}</h1>
-      <p class="privacy-policy__updated">{{ lastUpdated() }}</p>
+      <a routerLink="/" mat-button class="privacy-policy__back-button">
+        <mat-icon>arrow_back</mat-icon>
+        Zurück zur Startseite
+      </a>
+      
+      <mat-card class="privacy-policy__title-card">
+        <mat-card-content>
+          <h1 class="privacy-policy__title">{{ pageTitle() }}</h1>
+          <p class="privacy-policy__updated">{{ lastUpdated() }}</p>
+        </mat-card-content>
+      </mat-card>
     </div>
 
     <div class="privacy-policy__content">
       
-      <section class="privacy-policy__section">
-        <h2>1. Verantwortliche Stelle</h2>
-        <p>
-          Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br>
-          [Hier Name und Anschrift des Betreibers einfügen]
-        </p>
-      </section>
+      <mat-card class="privacy-policy__section-card">
+        <mat-card-header>
+          <mat-card-title>1. Verantwortliche Stelle</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p>
+            Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br>
+            [Hier Name und Anschrift des Betreibers einfügen]
+          </p>
+        </mat-card-content>
+      </mat-card>
 
-      <section class="privacy-policy__section">
-        <h2>2. Erhebung und Speicherung personenbezogener Daten</h2>
-        <p>
-          Beim Aufrufen unserer Website werden durch den auf Ihrem Endgerät 
-          zum Einsatz kommenden Browser automatisch Informationen an den 
-          Server unserer Website gesendet.
-        </p>
-        <p>
-          Diese Informationen werden temporär in einem sog. Logfile gespeichert. 
-          Folgende Informationen werden dabei erfasst:
-        </p>
-        <ul>
-          <li>IP-Adresse des anfragenden Rechners</li>
-          <li>Datum und Uhrzeit des Zugriffs</li>
-          <li>Name und URL der abgerufenen Datei</li>
-          <li>Website, von der aus der Zugriff erfolgt</li>
-          <li>Verwendeter Browser und ggf. das Betriebssystem</li>
-        </ul>
-      </section>
+      <mat-card class="privacy-policy__section-card">
+        <mat-card-header>
+          <mat-card-title>2. Erhebung und Speicherung personenbezogener Daten</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p>
+            Beim Aufrufen unserer Website werden durch den auf Ihrem Endgerät 
+            zum Einsatz kommenden Browser automatisch Informationen an den 
+            Server unserer Website gesendet.
+          </p>
+          <p>
+            Diese Informationen werden temporär in einem sog. Logfile gespeichert. 
+            Folgende Informationen werden dabei erfasst:
+          </p>
+          
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListItemIcon>security</mat-icon>
+              IP-Adresse des anfragenden Rechners
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>schedule</mat-icon>
+              Datum und Uhrzeit des Zugriffs
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>description</mat-icon>
+              Name und URL der abgerufenen Datei
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>link</mat-icon>
+              Website, von der aus der Zugriff erfolgt
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>computer</mat-icon>
+              Verwendeter Browser und ggf. das Betriebssystem
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
 
-      <section class="privacy-policy__section">
-        <h2>3. Kontaktformular</h2>
-        <p>
-          Sofern Sie das auf der Website bereitgestellte Kontaktformular nutzen, 
-          werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Nachricht) 
-          an uns übermittelt und gespeichert.
-        </p>
-        <p>
-          Die Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 
-          lit. a DSGVO). Die Daten werden ausschließlich für die Bearbeitung Ihrer 
-          Anfrage verwendet.
-        </p>
-      </section>
+      <mat-card class="privacy-policy__section-card">
+        <mat-card-header>
+          <mat-card-title>3. Kontaktformular</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p>
+            Sofern Sie das auf der Website bereitgestellte Kontaktformular nutzen, 
+            werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Nachricht) 
+            an uns übermittelt und gespeichert.
+          </p>
+          <p>
+            Die Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 
+            lit. a DSGVO). Die Daten werden ausschließlich für die Bearbeitung Ihrer 
+            Anfrage verwendet.
+          </p>
+        </mat-card-content>
+      </mat-card>
 
-      <section class="privacy-policy__section">
-        <h2>4. Externe Links</h2>
-        <p>
-          Unsere Website enthält Links zu externen Webseiten Dritter, auf deren 
-          Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte können 
-          wir daher keine Gewähr übernehmen.
-        </p>
-        <p>
-          Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter 
-          verantwortlich. Eine ständige inhaltliche Kontrolle der verlinkten 
-          Seiten ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht 
-          zumutbar.
-        </p>
-      </section>
+      <mat-card class="privacy-policy__section-card">
+        <mat-card-header>
+          <mat-card-title>4. Externe Links</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p>
+            Unsere Website enthält Links zu externen Webseiten Dritter, auf deren 
+            Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte können 
+            wir daher keine Gewähr übernehmen.
+          </p>
+          <p>
+            Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter 
+            verantwortlich. Eine ständige inhaltliche Kontrolle der verlinkten 
+            Seiten ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht 
+            zumutbar.
+          </p>
+        </mat-card-content>
+      </mat-card>
 
-      <section class="privacy-policy__section">
-        <h2>5. Ihre Rechte</h2>
-        <p>Sie haben folgende Rechte:</p>
-        <ul>
-          <li>Recht auf Auskunft über Ihre gespeicherten Daten</li>
-          <li>Recht auf Berichtigung unrichtiger Daten</li>
-          <li>Recht auf Löschung Ihrer Daten</li>
-          <li>Recht auf Einschränkung der Verarbeitung</li>
-          <li>Recht auf Datenübertragbarkeit</li>
-          <li>Widerspruchsrecht gegen die Verarbeitung</li>
-        </ul>
-      </section>
+      <mat-card class="privacy-policy__section-card">
+        <mat-card-header>
+          <mat-card-title>5. Ihre Rechte</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p>Sie haben folgende Rechte:</p>
+          
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListItemIcon>search</mat-icon>
+              Recht auf Auskunft über Ihre gespeicherten Daten
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>edit</mat-icon>
+              Recht auf Berichtigung unrichtiger Daten
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>delete</mat-icon>
+              Recht auf Löschung Ihrer Daten
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>block</mat-icon>
+              Recht auf Einschränkung der Verarbeitung
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>swap_horiz</mat-icon>
+              Recht auf Datenübertragbarkeit
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>cancel</mat-icon>
+              Widerspruchsrecht gegen die Verarbeitung
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
 
-      <section class="privacy-policy__section">
-        <h2>6. Kontakt</h2>
-        <p>
-          Bei Fragen zum Datenschutz können Sie sich jederzeit über das 
-          <a routerLink="/contact">Kontaktformular</a> an uns wenden.
-        </p>
-      </section>
+      <mat-card class="privacy-policy__section-card privacy-policy__section-card--highlight">
+        <mat-card-header>
+          <mat-card-title>
+            <mat-icon>contact_mail</mat-icon>
+            6. Kontakt
+          </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <p>
+            Bei Fragen zum Datenschutz können Sie sich jederzeit über das 
+            <a routerLink="/contact" mat-button color="primary">Kontaktformular</a> an uns wenden.
+          </p>
+        </mat-card-content>
+      </mat-card>
 
     </div>
   </div>
