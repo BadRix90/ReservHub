@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './about.scss'
 })
 export class About {
-  protected readonly title = signal('ReservHub - Informationsportal');
+  protected readonly title = signal('Gefechtsstand-Reserve');
   protected readonly subtitle = signal('Gebündelte Informationen für Reservisten der Bundeswehr');
   
   protected readonly infoSections = signal([

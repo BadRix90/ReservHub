@@ -100,6 +100,7 @@
   gap: clamp(2rem, 4vw, 4rem);
   align-items: center;
   margin-bottom: clamp(4rem, 8vw, 6rem);
+  padding: 1.5rem;
   
   @include respond-down(md) {
     grid-template-columns: 1fr;
