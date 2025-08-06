@@ -87,13 +87,9 @@ body {
 }
 
 body {
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
   color-scheme: light;
-  background-color: $multitarn-offwhite;
-  background-image: url('./assets/backgrounds/multitarn-comic.png');
-  color: var(--mat-sys-on-surface);
+  background-color: $white;
+  color: $black;
   font: var(--mat-sys-body-medium);
 
   // SEO: Semantic Document Flow
@@ -111,7 +107,7 @@ main {
 
   // SEO: Semantic Landmark
   &:focus {
-    outline: 2px solid var(--focus-ring, #005fcc);
+    outline: 2px solid var(--focus-ring, $focus-ring);
     outline-offset: 2px;
   }
 }
@@ -174,6 +170,19 @@ main {
 }
 
 // ===== TYPOGRAPHY =====
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+li {
+  color: $black;
+}
+
 h1,
 h2,
 h3,
@@ -359,8 +368,8 @@ h6 {
   position: absolute;
   top: -40px;
   left: 6px;
-  background: var(--primary-color, #000);
-  color: white;
+  background: var(--primary-color, $black);
+  color: $black;
   padding: 8px;
   text-decoration: none;
   border-radius: 4px;
@@ -373,7 +382,7 @@ h6 {
 
 // Focus Management
 :focus-visible {
-  outline: 2px solid var(--focus-ring, #005fcc);
+  outline: 2px solid var(--focus-ring, $focus-ring);
   outline-offset: 2px;
 }
 

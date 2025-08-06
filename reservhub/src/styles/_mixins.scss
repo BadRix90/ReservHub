@@ -83,7 +83,7 @@ $breakpoints: (
   cursor: pointer;
 }
 
-@mixin btn-primary($bg: #667eea, $text: white) {
+@mixin btn-primary($bg: $primary, $text: $black) {
   @include btn-reset;
   background: $bg;
   color: $text;
