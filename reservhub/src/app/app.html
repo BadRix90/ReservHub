@@ -1,1 +1,40 @@
-<router-outlet />
+<mat-drawer-container class="layout-container">
+  <mat-drawer #drawer class="sidebar" [mode]="isMobile() ? 'over' : 'side'" [opened]="sidebarOpen()">
+    <div class="sidebar-content">
+      @if (isMobile()) {
+        <div class="sidebar-header">
+          <mat-icon class="close-icon" (click)="closeSidebar()">close</mat-icon>
+        </div>
+      }
+      
+      <div class="logo-container" (click)="navigateToHome()">
+        <img src="assets/img/logo/reservhub-logo.webp" alt="ReservHub Logo" class="logo">
+        <h3 class="brand-text">Gefechtsstand-Reserve</h3>
+      </div>
+      
+      <nav class="nav-menu">
+        <mat-nav-list>
+          @for (item of navItems(); track item.label) {
+            <mat-list-item class="nav-item" (click)="navigateToSection(item)">
+              <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+              <span class="nav-label">{{ item.label }}</span>
+            </mat-list-item>
+          }
+        </mat-nav-list>
+      </nav>
+    </div>
+  </mat-drawer>
+  
+  <mat-drawer-content class="main-drawer-content">
+    @if (isMobile()) {
+      <mat-toolbar class="top-toolbar">
+        <mat-icon class="menu-toggle" (click)="toggleSidebar()">menu</mat-icon>
+        <span class="toolbar-title">Gefechtsstand-Reserve</span>
+      </mat-toolbar>
+    }
+    
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
