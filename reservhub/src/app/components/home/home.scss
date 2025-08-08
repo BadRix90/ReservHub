@@ -1,13 +1,17 @@
-// ===== HOME COMPONENT MIT SIDEBAR STYLES =====
-// src/app/components/home/home.scss
+// src/app/components/home/home.scss - KORRIGIERT
 @use 'variables' as *;
 @use 'mixins' as *;
 
+// ===== HOST ELEMENT =====
+:host {
+  display: block;
+  height: 100vh; // Volle Viewport-Höhe
+}
+
 // ===== LAYOUT CONTAINER =====
 .layout-container {
-  height: 100vh;
+  height: 100%; // Volle Höhe des Host-Elements
   width: 100%;
-  overflow: hidden;
 }
 
 // ===== SIDEBAR HEADER (X-BUTTON) =====
@@ -170,12 +174,13 @@
   transition: $transition-medium;
 }
 
-// ===== MAIN CONTENT WRAPPER =====
-.main-content-wrapper {
-  display: flex;
-  flex-direction: column;
+// ===== MAIN DRAWER CONTENT (SCROLLT HIER!) =====
+.main-drawer-content {
+  // WICHTIG: Hier findet das Scrolling statt
   height: 100vh;
-  background: $light-bg;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
 // ===== TOP TOOLBAR =====
@@ -185,7 +190,8 @@
   height: $header-height;
   box-shadow: $shadow-light;
   z-index: $z-sticky;
-  position: relative;
+  position: sticky;
+  top: 0;
   
   // Nur auf Mobile sichtbar
   @include respond-up(md) {
@@ -214,43 +220,18 @@
   }
 }
 
-// ===== MAIN CONTENT AREA =====
-.main-content {
-  flex: 1;
-  overflow-y: auto;
-  background: $white;
-  position: relative;
-
-  // Smooth Scroll
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-
-  // Performance
-  contain: layout style;
-  will-change: scroll-position;
-  
-  // Desktop: Kein Padding-Top
-  @include respond-up(md) {
-    padding-top: 0;
-  }
-  
-  // Mobile: Padding-Top für Toolbar
-  @include respond-down(sm) {
-    padding-top: $header-height;
-  }
-}
-
-// ===== APP WRAPPER (ORIGINAL HOME CONTENT) =====
+// ===== APP WRAPPER (CONTENT) =====
 .app-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-
+  // Optional: Padding für Content
+  padding: $spacing-md;
+  
   main {
-    flex: 1;
-    
     section {
       padding: 3rem 0;
+      
+      // Debug: Sichtbare Section-Grenzen
+      // border: 1px solid red;
+      // margin: 10px 0;
     }
   }
 }
@@ -284,14 +265,14 @@
       z-index: $z-modal;
     }
   }
-
-  .main-content-wrapper {
-    width: 100%;
-  }
   
   // Backdrop für Mobile Sidebar
   .mat-drawer-backdrop {
     background: rgba($black, 0.5);
+  }
+  
+  .app-wrapper {
+    padding: $spacing-sm;
   }
 }
 

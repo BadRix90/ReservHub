@@ -1,25 +1,66 @@
-@if (showMainContent()) {
-<div class="app-wrapper">
-  <main>
-    <app-hero></app-hero>
+<!-- src/app/components/home/home.html - KORRIGIERT -->
+<mat-drawer-container class="layout-container">
+  <mat-drawer #drawer class="sidebar" [mode]="isMobile() ? 'over' : 'side'" [opened]="sidebarOpen()">
+    <div class="sidebar-content">
+      <!-- X-Button nur auf Mobile -->
+      @if (isMobile()) {
+        <div class="sidebar-header">
+          <mat-icon class="close-icon" (click)="closeSidebar()">close</mat-icon>
+        </div>
+      }
+      
+      <div class="logo-container" (click)="scrollToSection('home')">
+        <img src="assets/img/logo/reservhub-logo.webp" alt="ReservHub Logo" class="logo">
+        <h3 class="brand-text">Gefechtsstand-Reserve</h3>
+      </div>
+      
+      <nav class="nav-menu">
+        <mat-nav-list>
+          @for (item of navItems(); track item.label) {
+            <mat-list-item class="nav-item" (click)="navigateToSection(item)">
+              <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+              <span class="nav-label">{{ item.label }}</span>
+            </mat-list-item>
+          }
+        </mat-nav-list>
+      </nav>
+    </div>
+  </mat-drawer>
+  
+  <mat-drawer-content class="main-drawer-content">
+    <!-- Burger Menu nur auf Mobile -->
+    @if (isMobile()) {
+      <mat-toolbar class="top-toolbar">
+        <mat-icon class="menu-toggle" (click)="toggleSidebar()">menu</mat-icon>
+        <span class="toolbar-title">Gefechtsstand-Reserve</span>
+      </mat-toolbar>
+    }
+    
+    <!-- Hauptinhalt - HIER wird gescrollt -->
+    @if (showMainContent()) {
+      <div class="app-wrapper">
+        <main>
+          <app-hero></app-hero>
 
-    <section id="about">
-      <app-about></app-about>
-    </section>
+          <section id="about">
+            <app-about></app-about>
+          </section>
 
-    <section id="usg">
-      <app-usg></app-usg>
-    </section>
+          <section id="usg">
+            <app-usg></app-usg>
+          </section>
 
-    <section id="links">
-      <app-links></app-links>
-    </section>
+          <section id="links">
+            <app-links></app-links>
+          </section>
 
-    <section id="contact">
-      <app-contact></app-contact>
-    </section>
+          <section id="contact">
+            <app-contact></app-contact>
+          </section>
 
-    <app-footer></app-footer>
-  </main>
-</div>
-}
+          <app-footer></app-footer>
+        </main>
+      </div>
+    }
+  </mat-drawer-content>
+</mat-drawer-container>

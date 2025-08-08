@@ -1,3 +1,4 @@
+// src/app/components/home/home.ts - KORRIGIERT
 import { Component, signal, ViewChild } from '@angular/core';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -37,74 +38,7 @@ interface NavItem {
     Contact,
     Usg
   ],
-  template: `
-    <mat-drawer-container class="layout-container">
-      <mat-drawer #drawer class="sidebar" [mode]="isMobile() ? 'over' : 'side'" [opened]="sidebarOpen()">
-        <div class="sidebar-content">
-          <!-- X-Button nur auf Mobile -->
-          @if (isMobile()) {
-            <div class="sidebar-header">
-              <mat-icon class="close-icon" (click)="closeSidebar()">close</mat-icon>
-            </div>
-          }
-          
-          <div class="logo-container" (click)="scrollToSection('home')">
-            <img src="assets/img/logo/reservhub-logo.webp" alt="ReservHub Logo" class="logo">
-            <h3 class="brand-text">Gefechtsstand-Reserve</h3>
-          </div>
-          
-          <nav class="nav-menu">
-            <mat-nav-list>
-              @for (item of navItems(); track item.label) {
-                <mat-list-item class="nav-item" (click)="navigateToSection(item)">
-                  <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
-                  <span class="nav-label">{{ item.label }}</span>
-                </mat-list-item>
-              }
-            </mat-nav-list>
-          </nav>
-        </div>
-      </mat-drawer>
-      
-      <div class="main-content-wrapper">
-        <!-- Burger Menu nur auf Mobile -->
-        @if (isMobile()) {
-          <mat-toolbar class="top-toolbar">
-            <mat-icon class="menu-toggle" (click)="toggleSidebar()">menu</mat-icon>
-            <span class="toolbar-title">Gefechtsstand-Reserve</span>
-          </mat-toolbar>
-        }
-        
-        <div class="main-content">
-          @if (showMainContent()) {
-            <div class="app-wrapper">
-              <main>
-                <app-hero></app-hero>
-
-                <section id="about">
-                  <app-about></app-about>
-                </section>
-
-                <section id="usg">
-                  <app-usg></app-usg>
-                </section>
-
-                <section id="links">
-                  <app-links></app-links>
-                </section>
-
-                <section id="contact">
-                  <app-contact></app-contact>
-                </section>
-
-                <app-footer></app-footer>
-              </main>
-            </div>
-          }
-        </div>
-      </div>
-    </mat-drawer-container>
-  `,
+  templateUrl: './home.html',
   styleUrl: './home.scss'
 })
 export class Home {
@@ -156,36 +90,64 @@ export class Home {
   }
 
   protected navigateToSection(item: NavItem): void {
+    console.log('navigateToSection called with:', item);
+    
     // Auf Mobile: Sidebar nach Navigation schließen
     if (this.isMobile()) {
       this.closeSidebar();
     }
     
     if (item.fragment) {
-      // Fragment Navigation - direkt scrollen
+      console.log('Fragment navigation to:', item.fragment);
       this.scrollToSection(item.fragment);
     } else if (item.route) {
-      // Route Navigation
+      console.log('Route navigation to:', item.route);
       this.router.navigate([item.route]);
     }
   }
 
   protected scrollToSection(fragment: string): void {
+    console.log('scrollToSection called with:', fragment);
+    
     if (fragment === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Scroll zum Top des Drawer-Contents
+      const drawerContent = document.querySelector('mat-drawer-content');
+      if (drawerContent) {
+        drawerContent.scrollTo({ top: 0, behavior: 'smooth' });
+      }
       return;
     }
     
     const element = document.getElementById(fragment);
+    console.log('Found element:', element);
+    
     if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      // KORRIGIERT: Scroll im richtigen Container (mat-drawer-content)
+      const drawerContent = document.querySelector('mat-drawer-content');
+      
+      if (drawerContent) {
+        const headerOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const containerTop = drawerContent.getBoundingClientRect().top;
+        const scrollTop = drawerContent.scrollTop;
+        const offsetPosition = elementPosition - containerTop + scrollTop - headerOffset;
 
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+        console.log('Scrolling in drawer-content to position:', offsetPosition);
+        
+        drawerContent.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      } else {
+        // Fallback: Simple scrollIntoView
+        console.log('Using scrollIntoView fallback');
+        element.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    } else {
+      console.error('Element not found for fragment:', fragment);
     }
   }
 }
