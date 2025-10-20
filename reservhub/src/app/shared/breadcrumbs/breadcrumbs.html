@@ -1,1 +1,12 @@
-<p>breadcrumbs works!</p>
+<nav class="breadcrumbs">
+  @for (item of items(); track item.route; let last = $last) {
+    @if (!last) {
+      <a [routerLink]="item.route" class="breadcrumbs__link">
+        {{ item.label }}
+      </a>
+      <span class="breadcrumbs__separator">/</span>
+    } @else {
+      <span class="breadcrumbs__current">{{ item.label }}</span>
+    }
+  }
+</nav>

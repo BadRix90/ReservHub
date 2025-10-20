@@ -30,19 +30,16 @@ interface NavItem {
 })
 export class App {
   @ViewChild('drawer') drawer!: MatSidenav;
-  
+
   protected readonly sidebarOpen = signal(true);
   protected readonly isMobile = signal(false);
   protected readonly isDarkTheme = signal(false);
-  
-  protected readonly navItems = signal<NavItem[]>([
-    { label: 'Dashboard', route: '/dashboard', icon: 'dashboard' },
-    { label: 'Home', route: '/home', icon: 'home' },
-    { label: 'Über uns', route: '/about', icon: 'info' },
-    { label: 'Dokumente', route: '/documents', icon: 'description' },
-    { label: 'Datenschutz', route: '/privacy-policy', icon: 'privacy_tip' },
-    { label: 'Impressum', route: '/legal-notice', icon: 'gavel' }
-  ]);
+
+protected readonly navItems = signal<NavItem[]>([
+  { label: 'Dashboard', route: '/dashboard', icon: 'dashboard' },
+  { label: 'Datenschutz', route: '/privacy-policy', icon: 'privacy_tip' },
+  { label: 'Impressum', route: '/legal-notice', icon: 'gavel' }
+]);
 
   constructor(
     private router: Router,
@@ -56,7 +53,7 @@ export class App {
         this.sidebarOpen.set(true);
       }
     });
-    
+
     this.loadThemePreference();
   }
 
@@ -81,8 +78,17 @@ export class App {
     if (this.isMobile()) {
       this.closeSidebar();
     }
-    
-    if (item.route) {
+
+    if (item.fragment) {
+      this.router.navigate([item.route]).then(() => {
+        setTimeout(() => {
+          const element = document.getElementById(item.fragment!);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 100);
+      });
+    } else if (item.route) {
       this.router.navigate([item.route]);
     }
   }
@@ -90,7 +96,7 @@ export class App {
   protected toggleTheme(): void {
     this.isDarkTheme.set(!this.isDarkTheme());
     const html = document.documentElement;
-    
+
     if (this.isDarkTheme()) {
       html.classList.add('dark-theme');
       html.classList.remove('light-theme');
@@ -105,7 +111,7 @@ export class App {
   private loadThemePreference(): void {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
+
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
       this.isDarkTheme.set(true);
       document.documentElement.classList.add('dark-theme');

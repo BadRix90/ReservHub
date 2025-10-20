@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { ContentSection } from '../../models/page-content.model';
 
 @Component({
   selector: 'app-content-section',
-  imports: [],
+  standalone: true,
   templateUrl: './content-section.html',
   styleUrl: './content-section.scss'
 })
-export class ContentSection {
-
+export class ContentSectionComponent {
+  section = input.required<ContentSection>();
 }

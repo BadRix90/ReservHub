@@ -1,1 +1,14 @@
-<p>related-links works!</p>
+<div class="related-links">
+  <h3 class="related-links__title">Weiterführende Links</h3>
+  
+  <div class="related-links__grid">
+    @for (link of links(); track link.route) {
+      <div class="related-link" (click)="navigate(link.route)">
+        <span class="related-link__icon">{{ link.icon }}</span>
+        <h4 class="related-link__label">{{ link.label }}</h4>
+        <p class="related-link__desc">{{ link.description }}</p>
+        <div class="related-link__arrow">→</div>
+      </div>
+    }
+  </div>
+</div>

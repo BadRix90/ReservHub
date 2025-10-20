@@ -1,0 +1,29 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md 0;
+  font-size: 0.875rem;
+
+  &__link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    @include smooth-transition();
+
+    &:hover {
+      color: var(--primary);
+    }
+  }
+
+  &__separator {
+    color: var(--text-muted);
+  }
+
+  &__current {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+}

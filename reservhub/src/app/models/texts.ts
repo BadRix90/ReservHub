@@ -1,4 +1,5 @@
 import { Category } from './category.model';
+import { PageContent } from './page-content.model';
 
 export const CATEGORIES: Category[] = [
   {
@@ -48,6 +49,14 @@ export const CATEGORIES: Category[] = [
     color: 'var(--cat-news)',
     description: 'Bundeswehr News und politische Entwicklungen',
     route: '/news'
+  },
+  {
+    id: 'usg',
+    title: 'USG Rechner',
+    icon: '🧮',
+    color: 'var(--cat-uebungen)',
+    description: 'Berechne deine Unterhaltssicherung schnell und einfach',
+    route: '/usg-rechner'
   }
 ];
 
@@ -64,5 +73,68 @@ export const TEXTS = {
     targetReservists: '200.000',
     currentReservists: '51.000',
     targetYear: '2030'
+  }
+};
+
+export const PAGE_CONTENTS: { [key: string]: PageContent } = {
+  heimatschutz: {
+    categoryId: 'heimatschutz',
+    hero: {
+      title: 'Heimatschutz',
+      subtitle: 'Schutz kritischer Infrastruktur und territoriale Reserve',
+      color: 'var(--cat-heimatschutz)'
+    },
+    breadcrumbs: [
+      { label: 'Dashboard', route: '/dashboard' },
+      { label: 'Heimatschutz', route: '/heimatschutz' }
+    ],
+    sections: [
+      {
+        id: 'overview',
+        title: 'Was ist Heimatschutz?',
+        content: 'Der Heimatschutz bildet einen wesentlichen Baustein der Landesverteidigung. Die Heimatschutzkräfte sichern kritische Infrastruktur und unterstützen bei der Drehscheibe Deutschland.',
+        icon: '🛡️'
+      },
+      {
+        id: 'regiments',
+        title: '6 Heimatschutzregimenter',
+        content: 'Seit April 2025 gibt es sechs Heimatschutzregimenter in ganz Deutschland:',
+        type: 'list',
+        items: [
+          'Heimatschutzregiment 1 (Alt-Duvenstedt, Schleswig-Holstein)',
+          'Heimatschutzregiment 2 (Münster, NRW)',
+          'Heimatschutzregiment 3 (Nienburg, Niedersachsen)',
+          'Heimatschutzregiment 4 (Roth, Bayern)',
+          'Heimatschutzregiment 5 (Ohrdruf, Thüringen)',
+          'Heimatschutzregiment 6 (Altengrabow, Sachsen-Anhalt)'
+        ]
+      },
+      {
+        id: 'tasks',
+        title: 'Aufgaben',
+        content: 'Die Heimatschutzkräfte übernehmen vielfältige Aufgaben:',
+        type: 'list',
+        items: [
+          'Objektschutz kritischer Infrastruktur',
+          'Host Nation Support für Verbündete',
+          'Unterstützung bei Katastrophenhilfe',
+          'Sicherung von Versorgungslinien'
+        ]
+      }
+    ],
+    relatedLinks: [
+      {
+        label: 'Ich möchte Reservist werden',
+        route: '/reservist-werden',
+        icon: '👤',
+        description: 'Erfahre, wie du Teil des Heimatschutzes werden kannst'
+      },
+      {
+        label: 'Wehrübungen & Dienst',
+        route: '/wehruebungen',
+        icon: '📅',
+        description: 'Übungstermine und Dienstleistung im Heimatschutz'
+      }
+    ]
   }
 };

@@ -4,7 +4,6 @@ import { About } from '../about/about';
 import { Links } from '../../shared/links/links';
 import { Footer } from '../../shared/footer/footer';
 import { Contact } from '../../shared/contact/contact';
-import { Usg } from '../../components/usg/usg';
 import { Dashboard } from '../dashboard/dashboard';
 
 @Component({
@@ -16,8 +15,7 @@ import { Dashboard } from '../dashboard/dashboard';
     About,
     Links,
     Footer,
-    Contact,
-    Usg
+    Contact
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss'

@@ -1,1 +1,17 @@
-<p>content-section works!</p>
+<section class="content-section">
+  @if (section().icon) {
+    <div class="content-section__icon">{{ section().icon }}</div>
+  }
+  
+  <h2 class="content-section__title">{{ section().title }}</h2>
+  
+  <p class="content-section__content">{{ section().content }}</p>
+  
+  @if (section().type === 'list' && section().items) {
+    <ul class="content-section__list">
+      @for (item of section().items; track item) {
+        <li class="content-section__list-item">{{ item }}</li>
+      }
+    </ul>
+  }
+</section>
