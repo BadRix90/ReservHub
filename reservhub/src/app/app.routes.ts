@@ -5,6 +5,7 @@ import { Documents } from './pages/documents/documents';
 import { PrivacyPolicy } from './pages/privacy-policy/privacy-policy';
 import { LegalNotice } from './pages/legal-notice/legal-notice';
 import { Dashboard } from './pages/dashboard/dashboard';
+import { Contact } from './shared/contact/contact';
 import { Heimatschutz } from './pages/heimatschutz/heimatschutz';
 import { ReservistWerden } from './pages/reservist-werden/reservist-werden';
 import { Wehruebungen } from './pages/wehruebungen/wehruebungen';
@@ -16,6 +17,7 @@ import { Usg } from './pages/usg/usg';
 export const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: Dashboard },
+  { path: 'contact', component: Contact },
   { path: 'home', component: Home },
   { path: 'about', component: About },
   { path: 'documents', component: Documents },

@@ -38,7 +38,8 @@ export class App {
 protected readonly navItems = signal<NavItem[]>([
   { label: 'Dashboard', route: '/dashboard', icon: 'dashboard' },
   { label: 'Datenschutz', route: '/privacy-policy', icon: 'privacy_tip' },
-  { label: 'Impressum', route: '/legal-notice', icon: 'gavel' }
+  { label: 'Impressum', route: '/legal-notice', icon: 'gavel' },
+    { label: 'Kontakt', route: '/contact', icon: 'mail' }
 ]);
 
   constructor(

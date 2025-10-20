@@ -1,117 +1,98 @@
-@use '@angular/material' as mat;
-@use 'variables' as *;
-@use 'mixins' as *;
+@use '../../../styles/page-template' as *;
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+@include category-page-layout;
 
 .contact {
-  padding: 4rem 2rem;
-  min-height: 100vh;
-
-  &__container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  &__content {
+  &__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr 1.5fr;
+    gap: clamp(2rem, 4vw, 4rem);
     align-items: start;
 
-    @media (max-width: $breakpoint-xl) {
+    @include respond-down(md) {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: clamp(1.5rem, 3vw, 2rem);
     }
   }
 
   &__info {
-    .contact__label {
-      font-size: 0.875rem;
-      font-weight: 600;
-      color: #6b7280;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-    }
-
-    .contact__title {
-      font-size: 2.5rem;
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
       font-weight: 700;
-      color: #111827;
-      margin-bottom: 2rem;
-      line-height: 1.2;
-
-      @media (max-width: 480px) {
-        font-size: 2rem;
-      }
+      color: var(--text-primary);
+      margin-bottom: $spacing-lg;
+      font-family: $font-headings;
     }
 
-    .contact__description {
-      p {
-        color: #6b7280;
-        line-height: 1.6;
-        margin-bottom: 1rem;
+    p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: $spacing-md;
 
-        &:last-child {
-          margin-bottom: 0;
-        }
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }
 
   &__form-wrapper {
-    background-color: #f1f3f4;
-    border-radius: 20px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease-in-out;
-    padding: 20px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius-lg;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
   }
 
   &__form {
     .form-group {
-      margin-bottom: 2rem;
+      margin-bottom: clamp(1.25rem, 2.5vw, 1.5rem);
 
       &__label {
         display: block;
         font-weight: 600;
-        color: #111827;
-        margin-bottom: 0.75rem;
+        color: var(--text-primary);
+        margin-bottom: $spacing-sm;
         font-size: 0.875rem;
+        font-family: $font-headings;
       }
 
       &__input,
       &__textarea {
         width: 100%;
-        padding: 0.875rem;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        font-family: inherit;
-        font-size: 1rem;
-        transition: border-color 0.2s ease;
+        padding: $spacing-md;
+        border: 1px solid var(--border-color);
+        border-radius: $border-radius-md;
+        font-family: $font-primary;
+        font-size: 0.9375rem;
+        background: var(--surface);
+        color: var(--text-primary);
+        @include smooth-transition();
 
         &:focus {
           outline: none;
-          border-color: #3b82f6;
+          border-color: var(--primary);
+          box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.1);
         }
 
         &--error {
-          border-color: #ef4444;
+          border-color: var(--error);
         }
 
         &::placeholder {
-          color: #9ca3af;
+          color: var(--text-muted);
         }
       }
 
       &__textarea {
-        min-height: 120px;
+        min-height: 140px;
         resize: vertical;
-        font-family: inherit;
       }
 
       &__error {
-        color: #ef4444;
-        font-size: 0.875rem;
-        margin-top: 0.5rem;
+        color: var(--error);
+        font-size: 0.8125rem;
+        margin-top: $spacing-xs;
         font-weight: 500;
       }
     }
@@ -119,20 +100,21 @@
     .form-checkbox {
       display: flex;
       align-items: flex-start;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
+      gap: $spacing-sm;
+      margin-bottom: clamp(1.25rem, 2.5vw, 1.5rem);
 
       &__input {
         width: 18px;
         height: 18px;
-        accent-color: #3b82f6;
-        margin-top: 0.25rem;
+        accent-color: var(--primary);
+        margin-top: 0.15rem;
         flex-shrink: 0;
+        cursor: pointer;
       }
 
       &__label {
-        font-size: 0.875rem;
-        color: #6b7280;
+        font-size: 0.8125rem;
+        color: var(--text-secondary);
         line-height: 1.5;
         cursor: pointer;
       }
@@ -140,24 +122,27 @@
 
     .form-actions {
       &__submit {
-        background: #3b82f6;
+        background: var(--primary);
         color: white;
         border: none;
-        padding: 1rem 2rem;
-        border-radius: 8px;
+        padding: $spacing-md $spacing-xl;
+        border-radius: $border-radius-md;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.2s ease;
-        min-width: 180px;
+        width: 100%;
+        font-family: $font-headings;
+        font-size: 0.9375rem;
+        @include smooth-transition();
 
         &:hover:not(:disabled) {
-          background: #2563eb;
+          background: var(--primary-dark);
           transform: translateY(-2px);
+          box-shadow: var(--shadow-md);
         }
 
         &:disabled {
-          background: #d1d5db;
-          color: #9ca3af;
+          background: var(--border-color);
+          color: var(--text-muted);
           cursor: not-allowed;
           transform: none;
         }
@@ -174,7 +159,7 @@
             border-top: 2px solid currentColor;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            right: 1rem;
+            right: $spacing-lg;
             top: 50%;
             transform: translateY(-50%);
           }
@@ -186,76 +171,72 @@
 
 .toast {
   position: fixed;
-  top: 2rem;
-  right: 2rem;
+  top: $spacing-xl;
+  right: $spacing-xl;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.25rem;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  min-width: 300px;
-  max-width: 400px;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: var(--surface-alt);
+  border-radius: $border-radius-md;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+  min-width: 320px;
+  max-width: 420px;
   z-index: 1000;
   animation: slideIn 0.3s ease;
 
   &--success {
-    border-left: 4px solid #10b981;
+    border-left: 4px solid var(--success);
 
-    .toast__icon {
-      color: #10b981;
+    mat-icon {
+      color: var(--success);
     }
   }
 
   &--error {
-    border-left: 4px solid #ef4444;
+    border-left: 4px solid var(--error);
 
-    .toast__icon {
-      color: #ef4444;
+    mat-icon {
+      color: var(--error);
     }
   }
 
   &--warning {
-    border-left: 4px solid #f59e0b;
+    border-left: 4px solid var(--warning);
 
-    .toast__icon {
-      color: #f59e0b;
+    mat-icon {
+      color: var(--warning);
     }
   }
 
-  &__icon {
-    font-weight: bold;
-    font-size: 1rem;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  mat-icon {
+    flex-shrink: 0;
   }
 
   &__message {
     flex: 1;
     font-size: 0.875rem;
-    color: #111827;
+    color: var(--text-primary);
     line-height: 1.4;
   }
 
   &__close {
     background: none;
     border: none;
-    font-size: 1.125rem;
-    color: #9ca3af;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
     cursor: pointer;
     padding: 0;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
+    @include smooth-transition();
 
     &:hover {
-      color: #111827;
+      color: var(--text-primary);
     }
   }
 }
@@ -265,7 +246,6 @@
     transform: translateX(100%);
     opacity: 0;
   }
-
   to {
     transform: translateX(0);
     opacity: 1;
@@ -273,21 +253,6 @@
 }
 
 @keyframes spin {
-  from {
-    transform: translateY(-50%) rotate(0deg);
-  }
-
-  to {
-    transform: translateY(-50%) rotate(360deg);
-  }
-}
-
-@media (max-width: 480px) {
-  .toast {
-    top: 1rem;
-    right: 1rem;
-    left: 1rem;
-    min-width: auto;
-    max-width: none;
-  }
+  from { transform: translateY(-50%) rotate(0deg); }
+  to { transform: translateY(-50%) rotate(360deg); }
 }
