@@ -1,0 +1,8 @@
+<div class="card" 
+     [style.--card-color]="category().color"
+     (click)="onClick()">
+  <span class="card__icon">{{ category().icon }}</span>
+  <h3 class="card__title">{{ category().title }}</h3>
+  <p class="card__desc">{{ category().description }}</p>
+  <div class="card__arrow">→</div>
+</div>

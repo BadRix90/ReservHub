@@ -33,12 +33,12 @@ export class App {
   
   protected readonly sidebarOpen = signal(true);
   protected readonly isMobile = signal(false);
+  protected readonly isDarkTheme = signal(false);
   
   protected readonly navItems = signal<NavItem[]>([
-    { label: 'Info', icon: 'info', fragment: 'about' },
-    { label: 'USG Rechner', icon: 'calculate', fragment: 'usg' },
-    { label: 'Links', icon: 'link', fragment: 'links' },
-    { label: 'Kontakt', icon: 'contact_mail', fragment: 'contact' },
+    { label: 'Dashboard', route: '/dashboard', icon: 'dashboard' },
+    { label: 'Home', route: '/home', icon: 'home' },
+    { label: 'Über uns', route: '/about', icon: 'info' },
     { label: 'Dokumente', route: '/documents', icon: 'description' },
     { label: 'Datenschutz', route: '/privacy-policy', icon: 'privacy_tip' },
     { label: 'Impressum', route: '/legal-notice', icon: 'gavel' }
@@ -48,7 +48,6 @@ export class App {
     private router: Router,
     private breakpointObserver: BreakpointObserver
   ) {
-    // Mobile Responsive Detection
     this.breakpointObserver.observe(['(max-width: 768px)']).subscribe(result => {
       this.isMobile.set(result.matches);
       if (result.matches) {
@@ -57,12 +56,12 @@ export class App {
         this.sidebarOpen.set(true);
       }
     });
+    
+    this.loadThemePreference();
   }
 
   protected toggleSidebar(): void {
-    if (this.isMobile()) {
-      this.sidebarOpen.set(!this.sidebarOpen());
-    }
+    this.sidebarOpen.set(!this.sidebarOpen());
   }
 
   protected closeSidebar(): void {
@@ -72,19 +71,10 @@ export class App {
   }
 
   protected navigateToHome(): void {
-    // Logo-Klick: Immer zur Home-Route
     if (this.isMobile()) {
       this.closeSidebar();
     }
-    this.router.navigate(['/']).then(() => {
-      // Nach Navigation zum Top scrollen
-      setTimeout(() => {
-        const drawerContent = document.querySelector('mat-drawer-content');
-        if (drawerContent) {
-          drawerContent.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }, 100);
-    });
+    this.router.navigate(['/dashboard']);
   }
 
   protected navigateToSection(item: NavItem): void {
@@ -92,42 +82,35 @@ export class App {
       this.closeSidebar();
     }
     
-    if (item.fragment) {
-      // Fragment Navigation: Erst zu Home, dann scrollen
-      this.router.navigate(['/']).then(() => {
-        setTimeout(() => {
-          this.scrollToSection(item.fragment!);
-        }, 100);
-      });
-    } else if (item.route) {
-      // Route Navigation: Direkt zur neuen Seite
+    if (item.route) {
       this.router.navigate([item.route]);
     }
   }
 
-  private scrollToSection(fragment: string): void {
-    const element = document.getElementById(fragment);
+  protected toggleTheme(): void {
+    this.isDarkTheme.set(!this.isDarkTheme());
+    const html = document.documentElement;
     
-    if (element) {
-      const drawerContent = document.querySelector('mat-drawer-content');
-      
-      if (drawerContent) {
-        const headerOffset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const containerTop = drawerContent.getBoundingClientRect().top;
-        const scrollTop = drawerContent.scrollTop;
-        const offsetPosition = elementPosition - containerTop + scrollTop - headerOffset;
-        
-        drawerContent.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      } else {
-        element.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
-        });
-      }
+    if (this.isDarkTheme()) {
+      html.classList.add('dark-theme');
+      html.classList.remove('light-theme');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      html.classList.add('light-theme');
+      html.classList.remove('dark-theme');
+      localStorage.setItem('theme', 'light');
+    }
+  }
+
+  private loadThemePreference(): void {
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+      this.isDarkTheme.set(true);
+      document.documentElement.classList.add('dark-theme');
+    } else {
+      document.documentElement.classList.add('light-theme');
     }
   }
 }

@@ -1,17 +1,18 @@
-// src/app/components/home/home.ts - KOMPLETT ERSETZEN
 import { Component, signal } from '@angular/core';
-import { Hero } from '../hero/hero';
+import { Hero } from '../../shared/hero/hero';
 import { About } from '../about/about';
-import { Links } from '../links/links';
-import { Footer } from '../footer/footer';
-import { Contact } from '../contact/contact';
-import { Usg } from '../usg/usg';
+import { Links } from '../../shared/links/links';
+import { Footer } from '../../shared/footer/footer';
+import { Contact } from '../../shared/contact/contact';
+import { Usg } from '../../components/usg/usg';
+import { Dashboard } from '../dashboard/dashboard';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     Hero,
+    Dashboard,
     About,
     Links,
     Footer,

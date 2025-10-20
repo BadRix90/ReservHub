@@ -1,40 +1,63 @@
-<mat-drawer-container class="layout-container">
-  <mat-drawer #drawer class="sidebar" [mode]="isMobile() ? 'over' : 'side'" [opened]="sidebarOpen()">
-    <div class="sidebar-content">
-      @if (isMobile()) {
-        <div class="sidebar-header">
-          <mat-icon class="close-icon" (click)="closeSidebar()">close</mat-icon>
+<div class="layout-container">
+  <mat-drawer-container class="layout-container">
+    <mat-drawer
+      #drawer
+      [mode]="isMobile() ? 'over' : 'side'"
+      [opened]="sidebarOpen()"
+      class="sidebar">
+      
+      <div class="sidebar-content">
+        @if (isMobile()) {
+          <div class="sidebar-header">
+            <mat-icon class="close-icon" (click)="closeSidebar()">close</mat-icon>
+          </div>
+        }
+
+        <div class="logo-container" (click)="navigateToHome()">
+          <span class="brand-text">Gefechtsstand Reserve</span>
         </div>
-      }
-      
-      <div class="logo-container" (click)="navigateToHome()">
-        <img src="assets/img/logo/reservhub-logo.webp" alt="ReservHub Logo" class="logo">
-        <h3 class="brand-text">Gefechtsstand-Reserve</h3>
+
+        <nav class="nav-section">
+          <mat-nav-list class="nav-list">
+            @for (item of navItems(); track item.label) {
+              <mat-list-item 
+                class="nav-item"
+                (click)="navigateToSection(item)">
+                <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
+                <span class="nav-label">{{ item.label }}</span>
+              </mat-list-item>
+            }
+          </mat-nav-list>
+        </nav>
+
+        <div class="theme-toggle">
+          <button mat-icon-button class="theme-button" (click)="toggleTheme()">
+            <mat-icon>{{ isDarkTheme() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+          </button>
+        </div>
       </div>
-      
-      <nav class="nav-menu">
-        <mat-nav-list>
-          @for (item of navItems(); track item.label) {
-            <mat-list-item class="nav-item" (click)="navigateToSection(item)">
-              <mat-icon class="nav-icon">{{ item.icon }}</mat-icon>
-              <span class="nav-label">{{ item.label }}</span>
-            </mat-list-item>
-          }
-        </mat-nav-list>
-      </nav>
-    </div>
-  </mat-drawer>
-  
-  <mat-drawer-content class="main-drawer-content">
-    @if (isMobile()) {
-      <mat-toolbar class="top-toolbar">
-        <mat-icon class="menu-toggle" (click)="toggleSidebar()">menu</mat-icon>
-        <span class="toolbar-title">Gefechtsstand-Reserve</span>
-      </mat-toolbar>
-    }
-    
-    <div class="page-content">
-      <router-outlet></router-outlet>
-    </div>
-  </mat-drawer-content>
-</mat-drawer-container>
+    </mat-drawer>
+
+    <mat-drawer-content>
+      @if (!isMobile()) {
+        <mat-toolbar color="primary">
+          <button mat-icon-button (click)="toggleSidebar()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Gefechtsstand Reserve</span>
+        </mat-toolbar>
+      }
+
+      @if (isMobile()) {
+        <mat-toolbar color="primary">
+          <button mat-icon-button (click)="toggleSidebar()">
+            <mat-icon>menu</mat-icon>
+          </button>
+          <span>Gefechtsstand Reserve</span>
+        </mat-toolbar>
+      }
+
+      <router-outlet />
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

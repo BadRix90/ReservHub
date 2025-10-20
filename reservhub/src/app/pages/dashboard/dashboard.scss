@@ -1,0 +1,39 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.dashboard {
+  width: 100%;
+  max-width: $max-content-width;
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 4rem) $container-padding;
+
+  &__header {
+    text-align: center;
+    margin-bottom: clamp(2rem, 4vw, 4rem);
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: $spacing-sm;
+    font-family: $font-headings;
+  }
+
+  &__subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(1rem, 3vw, 2rem);
+    
+    @include respond-down(sm) {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+}

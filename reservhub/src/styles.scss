@@ -2,11 +2,12 @@
 @use 'styles/variables' as *;
 @use 'styles/mixins' as *;
 
-// ===== GLOBALE LAYOUT-KONSTANTEN =====
 $max-content-width: 1920px !default;
 $container-padding: clamp(1rem, 4vw, 3rem) !default;
 
-// ===== FONT FACES =====
+@include mat.core();
+
+// Font Faces (unverändert lassen)
 @font-face {
   font-family: 'Inter';
   src: url('./assets/fonts/Inter/Inter_18pt-Regular.woff2') format('woff2');
@@ -55,22 +56,12 @@ $container-padding: clamp(1rem, 4vw, 3rem) !default;
   font-display: swap;
 }
 
-// ===== MATERIAL THEME =====
 html {
-  @include mat.theme((color: (primary: mat.$magenta-palette,
-        tertiary: mat.$violet-palette,
-      ),
-      typography: (fontFamily: 'Inter, Open Sans, sans-serif',
-      ),
-      density: 0,
-    ));
-
-  // SEO: Verbessertes Scrollen
+  @include apply-theme;
   scroll-behavior: smooth;
   scroll-padding-top: 2rem;
 }
 
-// ===== BASE STYLES =====
 * {
   box-sizing: border-box;
 }
@@ -88,33 +79,24 @@ body {
 }
 
 body {
-  color-scheme: light;
-  background-color: $white;
-  color: $black;
-  font: var(--mat-sys-body-medium);
-
-  // SEO: Semantic Document Flow
+  background-color: var(--surface);
+  color: var(--text-primary);
+  transition: background-color $transition-medium, color $transition-medium;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
-  // Performance: Rendering-Optimierung
   text-rendering: optimizeSpeed;
 }
 
-// Haupt-Content Bereich
 main {
   flex: 1;
 
-  // SEO: Semantic Landmark
   &:focus {
-    outline: 2px solid var(--focus-ring, $focus-ring);
+    outline: 2px solid var(--primary);
     outline-offset: 2px;
   }
 }
 
-// ===== GLOBALE LAYOUT-KLASSEN =====
-// Haupt-Container mit 1920px Beschränkung
 .app-container {
   width: 100%;
   max-width: $max-content-width;
@@ -123,39 +105,29 @@ main {
   min-height: 100vh;
 }
 
-// Section-Container für Components
 .section-wrapper {
   width: 100%;
   max-width: $max-content-width;
   margin: 0 auto;
   padding-inline: $container-padding;
   position: relative;
-
-  // SEO-optimiert: Semantic Layout
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(1rem, 3vw, 2rem);
-
-  // Performance: Contain Layout
   contain: layout style;
 
-  // SEO: Semantic Spacing
   &:not(:last-child) {
     margin-block-end: clamp(2rem, 5vw, 4rem);
   }
 }
 
-// Content-Bereiche mit optimaler Lesbarkeit
 .content-area {
   max-width: min(65ch, 100%);
   margin-inline: auto;
-
-  // SEO: Optimale Zeilenlänge für Lesbarkeit
   line-height: 1.6;
   text-wrap: balance;
 }
 
-// Hero/Full-Width Sections
 .hero-section {
   width: 100%;
   max-width: $max-content-width;
@@ -164,32 +136,15 @@ main {
   display: grid;
   place-items: center;
   min-height: clamp(400px, 60vh, 800px);
-
-  // Performance: GPU-Beschleunigung
   transform: translateZ(0);
   will-change: transform;
 }
 
-// ===== TYPOGRAPHY =====
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-a,
-li {
-  color: $black;
+h1, h2, h3, h4, h5, h6, p, span, a, li {
+  color: var(--text-primary);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: $font-headings;
   font-weight: 600;
   line-height: 1.2;
@@ -211,207 +166,16 @@ h3 {
   font-weight: 600;
 }
 
-h4 {
-  font-size: 1.5rem;
-  font-weight: 500;
-}
-
-h5 {
-  font-size: 1.25rem;
-  font-weight: 500;
-}
-
-h6 {
-  font-size: 1.125rem;
-  font-weight: 500;
-}
-
-// ===== SEO-OPTIMIERTE UTILITY CLASSES =====
-// Responsive Text-Skalierung
-.text-fluid {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
-  line-height: 1.5;
-}
-
-.heading-fluid {
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  line-height: 1.2;
-}
-
-// Smart Grid-System
-.smart-grid {
-  display: grid;
-  gap: clamp(1rem, 3vw, 2rem);
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-
-  // Performance: Optimiertes Rendering
-  contain: layout;
-}
-
-// ===== BESTEHENDE UTILITY CLASSES (AKTUALISIERT) =====
 .container {
   width: 100%;
   max-width: $max-content-width;
   margin: 0 auto;
   padding-inline: $container-padding;
-
-  @include respond-down(sm) {
-    padding-inline: 0.75rem;
-  }
 }
 
-.section-padding {
-  padding: clamp(1.5rem, 5vw, 3rem) 0;
-}
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
 
-.grid {
-  display: grid;
-  gap: clamp(1rem, 3vw, 2rem);
-
-  &--2-cols {
-    grid-template-columns: repeat(2, 1fr);
-
-    @include respond-down(md) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  &--3-cols {
-    grid-template-columns: repeat(3, 1fr);
-
-    @include respond-down(lg) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    @include respond-down(sm) {
-      grid-template-columns: 1fr;
-    }
-  }
-}
-
-.hide-mobile {
-  @include respond-down(md) {
-    display: none !important;
-  }
-}
-
-.show-mobile {
-  display: none;
-
-  @include respond-down(md) {
-    display: block !important;
-  }
-}
-
-.font-normal {
-  font-weight: 400;
-}
-
-.font-medium {
-  font-weight: 500;
-}
-
-.font-semibold {
-  font-weight: 600;
-}
-
-.font-bold {
-  font-weight: 700;
-}
-
-.text-xs {
-  font-size: 0.75rem;
-}
-
-.text-sm {
-  font-size: 0.875rem;
-}
-
-.text-base {
-  font-size: 1rem;
-}
-
-.text-lg {
-  font-size: 1.125rem;
-}
-
-.text-xl {
-  font-size: 1.25rem;
-}
-
-.text-2xl {
-  font-size: 1.5rem;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-}
-
-.text-4xl {
-  font-size: 2.25rem;
-}
-
-.text-5xl {
-  font-size: 3rem;
-}
-
-.font-inter {
-  font-family: $font-primary;
-}
-
-.font-heading {
-  font-family: $font-headings;
-}
-
-// ===== ACCESSIBILITY & SEO =====
-// Skip-Links für Screen Reader
-.skip-link {
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: var(--primary-color, $black);
-  color: $black;
-  padding: 8px;
-  text-decoration: none;
-  border-radius: 4px;
-  z-index: 1000;
-
-  &:focus {
-    top: 6px;
-  }
-}
-
-// Focus Management
-:focus-visible {
-  outline: 2px solid var(--focus-ring, $focus-ring);
-  outline-offset: 2px;
-}
-
-// ===== RESPONSIVE IMAGES =====
-img {
-  max-width: 100%;
-  height: auto;
-
-  // SEO: Loading-Optimierung
-  &[loading="lazy"] {
-    content-visibility: auto;
-  }
-}
-
-// ===== PRINT STYLES =====
-@media print {
-
-  .app-container,
-  .section-wrapper,
-  .container {
-    max-width: none;
-    padding: 0;
-  }
-
-  // SEO: Print-optimierte Typography
-  body {
-    font-size: 12pt;
-    line-height: 1.4;
-  }
-}
-
+.bg-surface { background-color: var(--surface); }
+.bg-surface-alt { background-color: var(--surface-alt); }

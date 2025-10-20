@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'variables' as *;
 
 // ===== BREAKPOINT SYSTEM =====
 $breakpoints: (
@@ -110,4 +111,89 @@ $breakpoints: (
   -webkit-line-clamp: $lines;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+// ===== THEME SYSTEM MIXIN =====
+@mixin theme-light {
+  --primary: #{$light-primary};
+  --primary-dark: #{$light-primary-dark};
+  --primary-light: #{$light-primary-light};
+  --secondary: #{$light-secondary};
+  --accent: #{$light-accent};
+  
+  --surface: #{$light-surface};
+  --surface-alt: #{$light-surface-alt};
+  --surface-hover: #{$light-surface-hover};
+  
+  --text-primary: #{$light-text-primary};
+  --text-secondary: #{$light-text-secondary};
+  --text-muted: #{$light-text-muted};
+  
+  --border-color: #{$light-border};
+  --shadow-sm: #{$shadow-light-sm};
+  --shadow-md: #{$shadow-light-md};
+  --shadow-lg: #{$shadow-light-lg};
+  --shadow-xl: #{$shadow-light-xl};
+  --shadow-glow: #{$shadow-glow-light};
+  
+  --success: #{$success-light};
+  --warning: #{$warning-light};
+  --error: #{$error-light};
+  --info: #{$info-light};
+  
+  --cat-reservist: #{map.get($categories-light, 'reservist')};
+  --cat-heimatschutz: #{map.get($categories-light, 'heimatschutz')};
+  --cat-uebungen: #{map.get($categories-light, 'uebungen')};
+  --cat-rechtliches: #{map.get($categories-light, 'rechtliches')};
+  --cat-cyber: #{map.get($categories-light, 'cyber')};
+  --cat-news: #{map.get($categories-light, 'news')};
+}
+
+@mixin theme-dark {
+  --primary: #{$dark-primary};
+  --primary-dark: #{$dark-primary-dark};
+  --primary-light: #{$dark-primary-light};
+  --secondary: #{$dark-secondary};
+  --accent: #{$dark-accent};
+  
+  --surface: #{$dark-surface};
+  --surface-alt: #{$dark-surface-alt};
+  --surface-hover: #{$dark-surface-hover};
+  
+  --text-primary: #{$dark-text-primary};
+  --text-secondary: #{$dark-text-secondary};
+  --text-muted: #{$dark-text-muted};
+  
+  --border-color: #{$dark-border};
+  --shadow-sm: #{$shadow-dark-sm};
+  --shadow-md: #{$shadow-dark-md};
+  --shadow-lg: #{$shadow-dark-lg};
+  --shadow-xl: #{$shadow-dark-xl};
+  --shadow-glow: #{$shadow-glow-dark};
+  
+  --success: #{$success-dark};
+  --warning: #{$warning-dark};
+  --error: #{$error-dark};
+  --info: #{$info-dark};
+  
+  --cat-reservist: #{map.get($categories-dark, 'reservist')};
+  --cat-heimatschutz: #{map.get($categories-dark, 'heimatschutz')};
+  --cat-uebungen: #{map.get($categories-dark, 'uebungen')};
+  --cat-rechtliches: #{map.get($categories-dark, 'rechtliches')};
+  --cat-cyber: #{map.get($categories-dark, 'cyber')};
+  --cat-news: #{map.get($categories-dark, 'news')};
+}
+
+@mixin apply-theme {
+  @include theme-light;
+  
+  &.dark-theme {
+    @include theme-dark;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    &:not(.light-theme) {
+      @include theme-dark;
+    }
+  }
 }
