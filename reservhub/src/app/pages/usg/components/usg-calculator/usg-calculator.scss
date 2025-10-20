@@ -1,0 +1,246 @@
+@use '../../../../../styles/variables' as *;
+@use '../../../../../styles/mixins' as *;
+
+.calculator {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+
+  &__header {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+
+    h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+      font-weight: 600;
+      color: var(--text-primary);
+      margin: 0 0 $spacing-sm 0;
+      font-family: $font-headings;
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      margin: 0;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1.5rem, 3vw, 2rem);
+  }
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: $spacing-xs;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.date-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+
+  @include respond-down(sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.result-section {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  background: var(--surface-alt);
+  border: 1px solid var(--border-color);
+  border-radius: $border-radius-lg;
+  padding: clamp(1.5rem, 3vw, 2rem);
+}
+
+.result-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 $spacing-xl 0;
+  font-family: $font-headings;
+}
+
+.result-grid {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md 0;
+
+  @include respond-down(sm) {
+    flex-direction: column;
+    gap: $spacing-xs;
+    text-align: center;
+  }
+
+  .result-label {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .result-value {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: $font-primary;
+  }
+
+  &.result-total {
+    margin-top: $spacing-sm;
+    padding: $spacing-xl;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: $border-radius-md;
+    color: $white;
+
+    .result-label,
+    .result-value {
+      color: $white;
+    }
+
+    .result-value {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.result-divider {
+  height: 1px;
+  background: var(--border-color);
+  margin: $spacing-sm 0;
+}
+
+// Material Form Field Styling
+::ng-deep {
+  .calculator {
+    .mat-mdc-form-field {
+      width: 100%;
+
+      .mat-mdc-text-field-wrapper {
+        background: var(--surface);
+        padding: 0;
+      }
+
+      .mat-mdc-form-field-flex {
+        padding: $spacing-md $spacing-lg;
+        background: var(--surface);
+        border: 1px solid var(--border-color);
+        border-radius: $border-radius-md;
+        @include smooth-transition();
+
+        &:hover {
+          border-color: var(--primary);
+        }
+      }
+
+      &.mat-focused {
+        .mat-mdc-form-field-flex {
+          border-color: var(--primary);
+        }
+      }
+
+      .mat-mdc-select-value,
+      .mat-mdc-input-element {
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+
+      .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+      }
+
+      .mat-mdc-form-field-infix {
+        padding: 0;
+        min-height: 24px;
+        border: none;
+      }
+
+      .mat-mdc-form-field-focus-overlay {
+        background-color: transparent;
+      }
+
+      .mat-mdc-select-arrow-wrapper {
+        height: 24px;
+      }
+
+      .mat-mdc-select-arrow {
+        color: var(--text-secondary);
+      }
+
+      .mat-datepicker-toggle {
+        color: var(--text-secondary);
+      }
+    }
+
+    // Input fields
+    .mat-mdc-input-element {
+      padding: 0;
+      text-align: center;
+      font-weight: 600;
+    }
+  }
+}
+
+// Material Select Panel
+::ng-deep {
+  .mat-mdc-select-panel {
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: $border-radius-md;
+    box-shadow: var(--shadow-lg);
+
+    .mat-mdc-option {
+      padding: $spacing-md $spacing-lg;
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+
+      &:hover {
+        background: var(--surface-hover);
+      }
+
+      &.mat-mdc-option-active {
+        background: var(--surface-hover);
+      }
+
+      &.mdc-list-item--selected {
+        background: var(--primary);
+        color: $white;
+      }
+    }
+  }
+}
+
+@include respond-down(sm) {
+  .calculator {
+    padding: $spacing-lg;
+  }
+}

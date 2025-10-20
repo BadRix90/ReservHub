@@ -1,0 +1,96 @@
+<div class="calculator">
+  <header class="calculator__header">
+    <h2>{{ texts.title }}</h2>
+    <p>{{ texts.subtitle }}</p>
+  </header>
+
+  <form [formGroup]="usgForm" class="calculator__form">
+    
+    <div class="form-section">
+      <label class="form-label">{{ texts.labels.dienstgrad }}</label>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-select formControlName="dienstgrad">
+          @for (grad of dienstgrade; track grad.value) {
+            <mat-option [value]="grad.value">{{ grad.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">{{ texts.labels.anzahlKinder }}</label>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-select formControlName="anzahlKinder">
+          <mat-option [value]="0">0 Kinder</mat-option>
+          <mat-option [value]="1">1 Kind</mat-option>
+          <mat-option [value]="2">2 Kinder</mat-option>
+          <mat-option [value]="3">3 Kinder</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-section">
+      <label class="form-label">{{ texts.labels.berechnungsart }}</label>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-select formControlName="berechnungsArt">
+          <mat-option value="tage">{{ texts.labels.tage }}</mat-option>
+          <mat-option value="datum">{{ texts.labels.zeitraum }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    @if (usgForm.get('berechnungsArt')?.value === 'tage') {
+      <div class="form-section">
+        <label class="form-label">{{ texts.labels.rdTage }}</label>
+        <mat-form-field appearance="outline" class="full-width">
+          <input matInput type="number" formControlName="rdlTage" min="0.5" step="0.5">
+        </mat-form-field>
+      </div>
+    }
+
+    @if (usgForm.get('berechnungsArt')?.value === 'datum') {
+      <div class="form-section">
+        <label class="form-label">Zeitraum</label>
+        <div class="date-row">
+          <mat-form-field appearance="outline" class="flex-1">
+            <mat-label>{{ texts.labels.beginn }}</mat-label>
+            <input matInput [matDatepicker]="startPicker" formControlName="startDatum">
+            <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="flex-1">
+            <mat-label>{{ texts.labels.ende }}</mat-label>
+            <input matInput [matDatepicker]="endPicker" formControlName="endDatum">
+            <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+    }
+
+    <div class="result-section">
+      <h3 class="result-title">Berechnungsergebnis</h3>
+      
+      <div class="result-grid">
+        <div class="result-row">
+          <span class="result-label">{{ texts.labels.mindestleistung }}</span>
+          <span class="result-value">{{ formatCurrency(berechnungsErgebnis().mindestleistung) }}</span>
+        </div>
+        
+        <div class="result-row">
+          <span class="result-label">{{ texts.labels.praemie }}</span>
+          <span class="result-value">{{ formatCurrency(berechnungsErgebnis().dienstleistungspraemie) }}</span>
+        </div>
+
+        <div class="result-divider"></div>
+
+        <div class="result-row result-total">
+          <span class="result-label">{{ texts.labels.summe }}</span>
+          <span class="result-value">{{ formatCurrency(berechnungsErgebnis().gesamt) }}</span>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
