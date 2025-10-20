@@ -1,1 +1,18 @@
-<p>wehruebungen works!</p>
+<div class="page">
+  <div class="page__hero" [style.--hero-color]="pageContent().hero.color">
+    <div class="page__hero-content">
+      <app-breadcrumbs [items]="pageContent().breadcrumbs" />
+      
+      <h1 class="page__title">{{ pageContent().hero.title }}</h1>
+      <p class="page__subtitle">{{ pageContent().hero.subtitle }}</p>
+    </div>
+  </div>
+
+  <div class="page__content">
+    @for (section of pageContent().sections; track section.id) {
+      <app-content-section [section]="section" />
+    }
+
+    <app-related-links [links]="pageContent().relatedLinks" />
+  </div>
+</div>
