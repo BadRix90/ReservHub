@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Ebene_1" data-name="Ebene 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #11182a;
+        font-family: MontserratAlternates-Medium, 'Montserrat Alternates';
+        font-size: 72px;
+        font-weight: 500;
+      }
+
+      .cls-2 {
+        fill: #29a3dd;
+      }
+    </style>
+  </defs>
+  <polygon class="cls-2" points="27.75 66 28.15 152.61 102.95 108.96 27.75 66"/>
+  <text class="cls-1" transform="translate(113.9 130.44)"><tspan x="0" y="0">GSR</tspan></text>
+</svg>
