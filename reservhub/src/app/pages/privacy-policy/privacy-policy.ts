@@ -1,18 +1,14 @@
 import { Component, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list';
+import { ContentSectionComponent } from '../../shared/content-section/content-section';
+import { PRIVACY_POLICY_CONTENT } from '../../models/texts';
 
 @Component({
   selector: 'app-privacy-policy',
-  imports: [RouterLink, MatCardModule, MatButtonModule, MatIconModule, MatDividerModule, MatListModule],
+  standalone: true,
+  imports: [ContentSectionComponent],
   templateUrl: './privacy-policy.html',
   styleUrl: './privacy-policy.scss'
 })
 export class PrivacyPolicy {
-  protected readonly pageTitle = signal('Datenschutzerklärung');
-  protected readonly lastUpdated = signal('Stand: Januar 2025');
+  protected readonly content = signal(PRIVACY_POLICY_CONTENT);
 }

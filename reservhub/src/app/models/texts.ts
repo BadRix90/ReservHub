@@ -533,3 +533,124 @@ export const USG_CALCULATOR = {
   }
 };
 
+export const LEGAL_NOTICE_CONTENT = {
+  hero: {
+    title: 'Impressum',
+    subtitle: 'Stand: Januar 2025',
+    color: 'var(--primary)'
+  },
+  sections: [
+    {
+      id: 'tmg',
+      title: 'Angaben gemäß § 5 TMG',
+      content: '[Hier Name und vollständige Anschrift des Betreibers einfügen]\n[Straße und Hausnummer]\n[PLZ und Ort]',
+      type: 'text' as const
+    },
+    {
+      id: 'vertreter',
+      title: 'Vertreten durch',
+      content: '[Name der vertretungsberechtigten Person]',
+      type: 'text' as const
+    },
+    {
+      id: 'kontakt',
+      title: 'Kontakt',
+      content: 'E-Mail: [E-Mail-Adresse]\nTelefon: [Telefonnummer]',
+      type: 'text' as const
+    },
+    {
+      id: 'verantwortlich',
+      title: 'Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV',
+      content: '[Name und vollständige Anschrift der verantwortlichen Person]\n[Straße und Hausnummer]\n[PLZ und Ort]',
+      type: 'text' as const
+    },
+    {
+      id: 'haftung-inhalte',
+      title: 'Haftung für Inhalte',
+      content: 'Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht unter der Verpflichtung, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.\n\nVerpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich.',
+      type: 'text' as const
+    },
+    {
+      id: 'haftung-links',
+      title: 'Haftung für Links',
+      icon: 'info',
+      content: 'Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.\n\nFür externe Links übernehmen wir keine Haftung. Die verlinkten Inhalte liegen außerhalb unserer Verantwortung.\n\nDie verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.',
+      type: 'text' as const
+    },
+    {
+      id: 'urheberrecht',
+      title: 'Urheberrecht',
+      content: 'Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.',
+      type: 'text' as const
+    },
+    {
+      id: 'info-sammlung',
+      title: 'Hinweis zur Informationssammlung',
+      icon: 'info',
+      content: 'Alle auf dieser Website bereitgestellten Informationen wurden von unserem Team sorgfältig zusammengetragen und geprüft. Dennoch können wir keine Gewähr für die Vollständigkeit, Richtigkeit und Aktualität der Inhalte übernehmen.\n\nBei Fragen oder Anregungen können Sie uns gerne über unser Kontaktformular erreichen.',
+      type: 'text' as const
+    }
+  ]
+};
+
+export const PRIVACY_POLICY_CONTENT = {
+  hero: {
+    title: 'Datenschutzerklärung',
+    subtitle: 'Stand: Januar 2025',
+    color: 'var(--primary)'
+  },
+  sections: [
+    {
+      id: 'verantwortliche',
+      title: '1. Verantwortliche Stelle',
+      content: 'Verantwortlich für die Datenverarbeitung auf dieser Website ist:\n[Hier Name und Anschrift des Betreibers einfügen]',
+      type: 'text' as const
+    },
+    {
+      id: 'erhebung',
+      title: '2. Erhebung und Speicherung personenbezogener Daten',
+      content: 'Beim Aufrufen unserer Website werden durch den auf Ihrem Endgerät zum Einsatz kommenden Browser automatisch Informationen an den Server unserer Website gesendet.\n\nDiese Informationen werden temporär in einem sog. Logfile gespeichert. Folgende Informationen werden dabei erfasst:',
+      type: 'list' as const,
+      items: [
+        'IP-Adresse des anfragenden Rechners',
+        'Datum und Uhrzeit des Zugriffs',
+        'Name und URL der abgerufenen Datei',
+        'Website, von der aus der Zugriff erfolgt',
+        'Verwendeter Browser und ggf. das Betriebssystem'
+      ]
+    },
+    {
+      id: 'kontaktformular',
+      title: '3. Kontaktformular',
+      content: 'Sofern Sie das auf der Website bereitgestellte Kontaktformular nutzen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Nachricht) an uns übermittelt und gespeichert.\n\nDie Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Die Daten werden ausschließlich für die Bearbeitung Ihrer Anfrage verwendet.',
+      type: 'text' as const
+    },
+    {
+      id: 'externe-links',
+      title: '4. Externe Links',
+      content: 'Unsere Website enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Für diese fremden Inhalte können wir daher keine Gewähr übernehmen.\n\nFür die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich. Eine ständige inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar.',
+      type: 'text' as const
+    },
+    {
+      id: 'rechte',
+      title: '5. Ihre Rechte',
+      content: 'Sie haben folgende Rechte:',
+      type: 'list' as const,
+      items: [
+        'Recht auf Auskunft über Ihre gespeicherten Daten',
+        'Recht auf Berichtigung unrichtiger Daten',
+        'Recht auf Löschung Ihrer Daten',
+        'Recht auf Einschränkung der Verarbeitung',
+        'Recht auf Datenübertragbarkeit',
+        'Widerspruchsrecht gegen die Verarbeitung'
+      ]
+    },
+    {
+      id: 'kontakt',
+      title: '6. Kontakt',
+      icon: 'contact_mail',
+      content: 'Bei Fragen zum Datenschutz können Sie sich jederzeit über das Kontaktformular an uns wenden.',
+      type: 'text' as const
+    }
+  ]
+};
