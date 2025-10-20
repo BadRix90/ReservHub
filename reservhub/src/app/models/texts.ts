@@ -5,7 +5,7 @@ export const CATEGORIES: Category[] = [
   {
     id: 'reservist',
     title: 'Ich möchte Reservist werden',
-    icon: '👤',
+    icon: 'person',
     color: 'var(--cat-reservist)',
     description: 'Einstieg als Zivilist, Voraussetzungen und Bewerbung',
     route: '/reservist-werden'
@@ -13,7 +13,7 @@ export const CATEGORIES: Category[] = [
   {
     id: 'heimatschutz',
     title: 'Heimatschutz',
-    icon: '🛡️',
+    icon: 'shield',
     color: 'var(--cat-heimatschutz)',
     description: 'Schutz kritischer Infrastruktur und territoriale Reserve',
     route: '/heimatschutz'
@@ -21,7 +21,7 @@ export const CATEGORIES: Category[] = [
   {
     id: 'uebungen',
     title: 'Wehrübungen & Dienst',
-    icon: '📅',
+    icon: 'event',
     color: 'var(--cat-uebungen)',
     description: 'Übungstermine, Beorderung und Freistellung',
     route: '/wehruebungen'
@@ -29,7 +29,7 @@ export const CATEGORIES: Category[] = [
   {
     id: 'rechtliches',
     title: 'Rechtliches & Karriere',
-    icon: '⚖️',
+    icon: 'gavel',
     color: 'var(--cat-rechtliches)',
     description: 'Kündigungsschutz, Beförderungen und Rechte',
     route: '/rechtliches'
@@ -37,7 +37,7 @@ export const CATEGORIES: Category[] = [
   {
     id: 'cyber',
     title: 'Cyber- & Fachreserve',
-    icon: '💻',
+    icon: 'computer',
     color: 'var(--cat-cyber)',
     description: 'IT-Spezialisierungen und Fachkompetenzen',
     route: '/cyber-reserve'
@@ -45,7 +45,7 @@ export const CATEGORIES: Category[] = [
   {
     id: 'news',
     title: 'Aktuelles & News',
-    icon: '📰',
+    icon: 'article',
     color: 'var(--cat-news)',
     description: 'Bundeswehr News und politische Entwicklungen',
     route: '/news'
@@ -53,7 +53,7 @@ export const CATEGORIES: Category[] = [
   {
     id: 'usg',
     title: 'USG Rechner',
-    icon: '🧮',
+    icon: 'calculate',
     color: 'var(--cat-uebungen)',
     description: 'Berechne deine Unterhaltssicherung schnell und einfach',
     route: '/usg-rechner'
@@ -93,7 +93,7 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'overview',
         title: 'Was ist Heimatschutz?',
         content: 'Der Heimatschutz bildet einen wesentlichen Baustein der Landesverteidigung. Die Heimatschutzkräfte sichern kritische Infrastruktur und unterstützen bei der Drehscheibe Deutschland.',
-        icon: '🛡️'
+        icon: 'shield'
       },
       {
         id: 'regiments',
@@ -126,13 +126,13 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
       {
         label: 'Ich möchte Reservist werden',
         route: '/reservist-werden',
-        icon: '👤',
+        icon: 'person',
         description: 'Erfahre, wie du Teil des Heimatschutzes werden kannst'
       },
       {
         label: 'Wehrübungen & Dienst',
         route: '/wehruebungen',
-        icon: '📅',
+        icon: 'event',
         description: 'Übungstermine und Dienstleistung im Heimatschutz'
       }
     ]
@@ -153,7 +153,7 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'info',
         title: 'Was ist die Unterhaltssicherung?',
         content: 'Die Unterhaltssicherung nach dem Unterhaltssicherungsgesetz (USG) stellt sicher, dass Reservisten während ihrer Wehrübungen finanziell abgesichert sind. Du erhältst eine Mindestleistung sowie eine Dienstleistungsprämie.',
-        icon: '💰'
+        icon: 'payments'
       },
       {
         id: 'anspruch',
@@ -171,20 +171,20 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'berechnung',
         title: 'Wie wird berechnet?',
         content: 'Die Berechnung erfolgt nach Dienstgrad und Anzahl der unterhaltsberechtigten Kinder. Der Rechner oben verwendet die aktuellen Sätze nach der Mindestleistungsanpassungsverordnung vom 19. April 2024.',
-        icon: '🧮'
+        icon: 'calculate'
       }
     ],
     relatedLinks: [
       {
         label: 'Wehrübungen & Dienst',
         route: '/wehruebungen',
-        icon: '📅',
+        icon: 'event',
         description: 'Informationen zu Wehrübungen und Dienstzeiten'
       },
       {
         label: 'Rechtliches & Karriere',
         route: '/rechtliches',
-        icon: '⚖️',
+        icon: 'gavel',
         description: 'Rechte und Pflichten als Reservist'
       }
     ]
@@ -205,7 +205,7 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'voraussetzungen',
         title: 'Voraussetzungen',
         content: 'Um Reservist zu werden, müssen bestimmte Voraussetzungen erfüllt sein:',
-        icon: '✅',
+        icon: 'check_circle',
         type: 'list',
         items: [
           'Deutsche Staatsbürgerschaft',
@@ -231,20 +231,20 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'bewerbung',
         title: 'Bewerbungsprozess',
         content: 'Der Weg zum Reservisten erfolgt in mehreren Schritten: Online-Bewerbung beim Karrierecenter der Bundeswehr, medizinische Untersuchung, Eignungsfeststellung und abschließende Einplanung in eine Reservisteneinheit.',
-        icon: '📋'
+        icon: 'description'
       }
     ],
     relatedLinks: [
       {
         label: 'Wehrübungen & Dienst',
         route: '/wehruebungen',
-        icon: '📅',
+        icon: 'event',
         description: 'Informationen zu Übungen und Dienstzeiten'
       },
       {
         label: 'Rechtliches & Karriere',
         route: '/rechtliches',
-        icon: '⚖️',
+        icon: 'gavel',
         description: 'Rechte und Pflichten als Reservist'
       }
     ]
@@ -266,7 +266,7 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'arten',
         title: 'Arten von Wehrübungen',
         content: 'Reservisten können an verschiedenen Arten von Übungen teilnehmen:',
-        icon: '📅',
+        icon: 'event',
         type: 'list',
         items: [
           'Kurzübungen (1-3 Tage)',
@@ -280,32 +280,32 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'beorderung',
         title: 'Beorderung und Freistellung',
         content: 'Die Teilnahme an Wehrübungen erfolgt auf freiwilliger Basis. Bei einer Beorderung hat der Reservist Anspruch auf Freistellung vom Arbeitgeber. Der Arbeitgeber erhält eine Entschädigung für den Verdienstausfall des Mitarbeiters.',
-        icon: '📨'
+        icon: 'mail'
       },
       {
         id: 'vergütung',
         title: 'Vergütung',
         content: 'Während der Wehrübung erhalten Reservisten Unterhaltssicherung nach dem USG sowie eine Dienstleistungsprämie. Die Höhe richtet sich nach Dienstgrad und Anzahl der Kinder.',
-        icon: '💰'
+        icon: 'payments'
       },
       {
         id: 'verpflegung',
         title: 'Verpflegung und Unterkunft',
         content: 'Während der Übung werden Unterkunft und Verpflegung von der Bundeswehr gestellt. Fahrtkosten werden nach dem Bundesreisekostengesetz erstattet.',
-        icon: '🏨'
+        icon: 'hotel'
       }
     ],
     relatedLinks: [
       {
         label: 'USG Rechner',
         route: '/usg-rechner',
-        icon: '🧮',
+        icon: 'calculate',
         description: 'Berechne deine Unterhaltssicherung'
       },
       {
         label: 'Rechtliches & Karriere',
         route: '/rechtliches',
-        icon: '⚖️',
+        icon: 'gavel',
         description: 'Kündigungsschutz und Rechte'
       }
     ]
@@ -327,7 +327,7 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'kündigungsschutz',
         title: 'Kündigungsschutz',
         content: 'Reservisten genießen besonderen Kündigungsschutz während und nach Wehrübungen:',
-        icon: '🛡️',
+        icon: 'shield',
         type: 'list',
         items: [
           'Kündigungsverbot während der Wehrübung',
@@ -341,32 +341,32 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'beförderungen',
         title: 'Beförderungen und Laufbahn',
         content: 'Auch als Reservist kann man befördert werden. Die Beförderung erfolgt nach Dienstzeit, Leistung und absolvierter Ausbildung. Regelmäßige Teilnahme an Wehrübungen ist Voraussetzung für den Aufstieg in der Reservistenlaufbahn.',
-        icon: '⭐'
+        icon: 'star'
       },
       {
         id: 'versicherung',
         title: 'Versicherung und Versorgung',
         content: 'Während der Wehrübung sind Reservisten unfallversichert. Bei Wehrdienstbeschädigung besteht Anspruch auf Versorgung nach dem Soldatenversorgungsgesetz.',
-        icon: '🏥'
+        icon: 'health_and_safety'
       },
       {
         id: 'sozialversicherung',
         title: 'Sozialversicherung',
         content: 'Die Beiträge zur Sozialversicherung laufen während der Wehrübung weiter. Der Arbeitgeber meldet die Freistellung, die Bundeswehr übernimmt die Erstattung.',
-        icon: '📋'
+        icon: 'description'
       }
     ],
     relatedLinks: [
       {
         label: 'Wehrübungen & Dienst',
         route: '/wehruebungen',
-        icon: '📅',
+        icon: 'event',
         description: 'Informationen zu Übungen'
       },
       {
         label: 'USG Rechner',
         route: '/usg-rechner',
-        icon: '🧮',
+        icon: 'calculate',
         description: 'Berechne deine Vergütung'
       }
     ]
@@ -388,7 +388,7 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'cyberreserve',
         title: 'Was ist die Cyber-Reserve?',
         content: 'Die Cyber-Reserve ist eine spezialisierte Einheit für IT-Sicherheit und Cyber-Abwehr. Sie besteht aus IT-Experten aus der Wirtschaft, die ihre Fachkenntnisse der Bundeswehr zur Verfügung stellen.',
-        icon: '💻'
+        icon: 'computer'
       },
       {
         id: 'anforderungen',
@@ -421,20 +421,20 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'fachreserve',
         title: 'Weitere Fachreserven',
         content: 'Neben der Cyber-Reserve gibt es weitere Fachreserven für Ärzte, Apotheker, Veterinäre und andere Spezialisten, die ihre beruflichen Qualifikationen einbringen.',
-        icon: '⚕️'
+        icon: 'health_and_safety'
       }
     ],
     relatedLinks: [
       {
         label: 'Ich möchte Reservist werden',
         route: '/reservist-werden',
-        icon: '👤',
+        icon: 'person',
         description: 'Bewerbung und Voraussetzungen'
       },
       {
         label: 'Rechtliches & Karriere',
         route: '/rechtliches',
-        icon: '⚖️',
+        icon: 'gavel',
         description: 'Rechte und Pflichten'
       }
     ]
@@ -456,13 +456,13 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'zeitenwende',
         title: 'Zeitenwende und Aufwuchs',
         content: 'Nach der Zeitenwende 2022 baut die Bundeswehr ihre Reservistenkapazitäten massiv aus. Das Ziel: Bis 2030 sollen 200.000 aktive Reservisten zur Verfügung stehen.',
-        icon: '📈'
+        icon: 'trending_up'
       },
       {
         id: 'heimatschutz',
         title: 'Aufbau Heimatschutz',
         content: 'Seit April 2025 gibt es sechs Heimatschutzregimenter. Diese Regimenter bestehen hauptsächlich aus Reservisten und sind für den Schutz kritischer Infrastruktur und Host Nation Support zuständig.',
-        icon: '🛡️'
+        icon: 'shield'
       },
       {
         id: 'neuerungen',
@@ -481,20 +481,20 @@ export const PAGE_CONTENTS: { [key: string]: PageContent } = {
         id: 'info',
         title: 'Bleib informiert',
         content: 'Diese Seite wird regelmäßig aktualisiert mit wichtigen Neuigkeiten für Reservisten. Offizielle Informationen findest du auf bundeswehr.de',
-        icon: 'ℹ️'
+        icon: 'info'
       }
     ],
     relatedLinks: [
       {
         label: 'Heimatschutz',
         route: '/heimatschutz',
-        icon: '🛡️',
+        icon: 'shield',
         description: 'Informationen zum Heimatschutz'
       },
       {
         label: 'Ich möchte Reservist werden',
         route: '/reservist-werden',
-        icon: '👤',
+        icon: 'person',
         description: 'Jetzt bewerben'
       }
     ]

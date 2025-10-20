@@ -43,6 +43,8 @@
     font-size: 2rem;
     display: block;
     margin-bottom: $spacing-sm;
+    overflow: visible;
+    height: 32px;
   }
 
   &__label {

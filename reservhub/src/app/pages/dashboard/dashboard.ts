@@ -1,6 +1,7 @@
 import { Component, signal, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
 import { CategoryCard } from '../../shared/category-card/category-card';
 import { Category } from '../../models/category.model';
 import { CATEGORIES, TEXTS } from '../../models/texts';
@@ -8,7 +9,7 @@ import { CATEGORIES, TEXTS } from '../../models/texts';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CategoryCard],
+  imports: [MatIconModule, CategoryCard],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss'
 })

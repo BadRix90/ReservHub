@@ -26,6 +26,30 @@
     margin: 0;
   }
 
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+    background: var(--surface-alt);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--primary);
+    border-radius: $border-radius-md;
+    padding: $spacing-lg;
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+
+    mat-icon {
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      line-height: 1.5;
+    }
+  }
+
   &__grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));

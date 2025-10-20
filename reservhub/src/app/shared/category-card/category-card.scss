@@ -9,7 +9,14 @@
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
   @include smooth-transition();
+
+  &__desc {
+    flex: 1;
+  }
 
   &::before {
     content: '';
@@ -40,6 +47,8 @@
     display: block;
     margin-bottom: $spacing-md;
     filter: grayscale(0.2);
+    overflow: visible;
+    height: 32px;
   }
 
   &__title {

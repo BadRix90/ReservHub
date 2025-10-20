@@ -9,7 +9,7 @@
   </div>
 
   <div class="page__content">
-    @for (section of pageContent().sections; track section.id) {
+    @for (section of allSections; track section.id) {
       <app-content-section [section]="section" />
     }
 

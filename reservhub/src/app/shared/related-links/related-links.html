@@ -4,10 +4,10 @@
   <div class="related-links__grid">
     @for (link of links(); track link.route) {
       <div class="related-link" (click)="navigate(link.route)">
-        <span class="related-link__icon">{{ link.icon }}</span>
+        <mat-icon class="related-link__icon">{{ link.icon }}</mat-icon>
         <h4 class="related-link__label">{{ link.label }}</h4>
         <p class="related-link__desc">{{ link.description }}</p>
-        <div class="related-link__arrow">→</div>
+        <mat-icon class="related-link__arrow">arrow_forward</mat-icon>
       </div>
     }
   </div>
